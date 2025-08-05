@@ -51,7 +51,7 @@ function App() {
     const fetchIssData = async () => {
       try {
         setError(null)
-        const response = await fetch('http://localhost:5000/api/iss')
+        const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/iss`)
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)
         }
@@ -237,7 +237,7 @@ function App() {
 
       // Get real weather data from OpenWeatherMap API
       try {
-        const response = await fetch(`http://localhost:5000/api/weather?lat=${lat}&lng=${lng}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/weather?lat=${lat}&lng=${lng}`);
         if (!response.ok) {
           throw new Error(`Weather API error: ${response.status}`);
         }
