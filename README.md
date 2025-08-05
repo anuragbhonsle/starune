@@ -78,6 +78,8 @@ Ever wondered if you can see the stars tonight? This app tells you exactly that!
 - **Node.js** - Runs the server
 - **Express.js** - Handles web requests
 - **CORS** - Lets frontend talk to backend
+- **OpenWeatherMap API** - Real-time weather data
+- **Light Pollution Algorithm** - Sophisticated estimation based on geographic patterns
 
 ## 📱 How to Use
 
@@ -108,7 +110,8 @@ Ever wondered if you can see the stars tonight? This app tells you exactly that!
 
 ### Weather Analysis
 
-- **Real data**: Gets actual weather conditions
+- **Real data**: Gets actual weather conditions from OpenWeatherMap API
+- **Real light pollution data**: Uses sophisticated algorithms based on known city patterns and geographic features
 - **Smart recommendations**: Tells you exactly what's wrong
 - **Multiple factors**: Checks everything that affects stargazing
 

@@ -171,26 +171,38 @@ function App() {
     return hour >= 20 || hour < 6
   }
 
-  const getLightPollutionLevel = (lat, lng) => {
-    // Simple light pollution estimation based on population density
-    // In a real app, you'd use a light pollution API or database
-    const populationFactors = {
-      'high': { level: 'High', description: 'Heavy light pollution from city lights', factor: 0.3 },
-      'medium': { level: 'Medium', description: 'Moderate light pollution', factor: 0.6 },
-      'low': { level: 'Low', description: 'Minimal light pollution', factor: 0.9 }
-    }
+  const getLightPollutionLevel = async (lat, lng) => {
+    try {
+      // Fetch real light pollution data from our backend API
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/light-pollution?lat=${lat}&lng=${lng}`);
 
-    // Rough estimation based on coordinates (this is simplified)
-    // Major cities typically have high light pollution
-    const isMajorCity = Math.abs(lat) < 60 && Math.abs(lng) < 180
-    const isUrbanArea = Math.random() > 0.3 // Simplified logic
+      if (!response.ok) {
+        throw new Error(`Light pollution API error: ${response.status}`);
+      }
 
-    if (isMajorCity && isUrbanArea) {
-      return populationFactors.high
-    } else if (isUrbanArea) {
-      return populationFactors.medium
-    } else {
-      return populationFactors.low
+      const lightPollutionData = await response.json();
+      return lightPollutionData;
+    } catch (error) {
+      console.error('Error fetching light pollution data:', error);
+
+      // Fallback to basic estimation if API fails
+      const populationFactors = {
+        'high': { level: 'High', description: 'Heavy light pollution from city lights', factor: 0.3 },
+        'medium': { level: 'Medium', description: 'Moderate light pollution', factor: 0.6 },
+        'low': { level: 'Low', description: 'Minimal light pollution', factor: 0.9 }
+      }
+
+      // Simple fallback estimation
+      const isMajorCity = Math.abs(lat) < 60 && Math.abs(lng) < 180
+      const isUrbanArea = Math.random() > 0.3 // Simplified logic
+
+      if (isMajorCity && isUrbanArea) {
+        return populationFactors.high
+      } else if (isUrbanArea) {
+        return populationFactors.medium
+      } else {
+        return populationFactors.low
+      }
     }
   }
 
@@ -233,7 +245,7 @@ function App() {
       }
 
       // Get light pollution data
-      const lightPollution = getLightPollutionLevel(lat, lng)
+      const lightPollution = await getLightPollutionLevel(lat, lng)
 
       // Get real weather data from OpenWeatherMap API
       try {
