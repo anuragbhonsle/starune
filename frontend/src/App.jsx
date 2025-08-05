@@ -263,7 +263,9 @@ function App() {
           if (!isGoodHumidity) issues.push("high humidity")
           if (!isGoodLightPollution) issues.push("light pollution")
 
-          recommendation = `Stargazing isn't ideal - ${issues.join(', ')}.`
+          // Show only the first two issues
+          const displayIssues = issues.slice(0, 2)
+          recommendation = `Stargazing isn't ideal - ${displayIssues.join(', ')}.`
         }
 
         setStargazingPrediction({
