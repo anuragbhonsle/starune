@@ -30,17 +30,26 @@ app.get("/api/weather", async (req, res) => {
         .json({ error: "Latitude and longitude are required" });
     }
 
-    // This would integrate with a weather API to get cloud cover data
-    // For now, returning mock data
-    const mockWeatherData = {
-      cloudCover: Math.random() * 100,
-      visibility: Math.random() * 10,
-      temperature: Math.random() * 30 - 10,
-      humidity: Math.random() * 100,
-      isGoodForStargazing: Math.random() > 0.5,
+    const apiKey = process.env.OPENWEATHER_API_KEY;
+    const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${apiKey}&units=metric`;
+
+    const response = await axios.get(weatherUrl);
+    const weatherData = response.data;
+
+    // Extract relevant weather data for stargazing
+    const realWeatherData = {
+      cloudCover: weatherData.clouds?.all || 0,
+      visibility: weatherData.visibility ? weatherData.visibility / 1000 : 10, // Convert to km
+      temperature: weatherData.main?.temp || 0,
+      humidity: weatherData.main?.humidity || 0,
+      description: weatherData.weather?.[0]?.description || "",
+      isGoodForStargazing:
+        (weatherData.clouds?.all || 0) < 30 &&
+        (weatherData.visibility ? weatherData.visibility / 1000 : 10) > 5 &&
+        (weatherData.main?.humidity || 0) < 80,
     };
 
-    res.json(mockWeatherData);
+    res.json(realWeatherData);
   } catch (error) {
     console.error("Error fetching weather data:", error);
     res.status(500).json({ error: "Failed to fetch weather data" });

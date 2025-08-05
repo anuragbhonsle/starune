@@ -235,15 +235,13 @@ function App() {
       // Get light pollution data
       const lightPollution = getLightPollutionLevel(lat, lng)
 
-      // Try to get real weather data (you'd need to set up a weather API key)
+      // Get real weather data from OpenWeatherMap API
       try {
-        // For now, using mock weather data but with more realistic values
-        const weatherData = {
-          cloudCover: 20 + Math.random() * 60, // 20-80%
-          visibility: 8 + Math.random() * 12, // 8-20 km
-          humidity: 40 + Math.random() * 40, // 40-80%
-          temperature: 15 + Math.random() * 20 // 15-35°C
+        const response = await fetch(`http://localhost:5000/api/weather?lat=${lat}&lng=${lng}`);
+        if (!response.ok) {
+          throw new Error(`Weather API error: ${response.status}`);
         }
+        const weatherData = await response.json();
 
         // Determine if conditions are good for stargazing
         const isGoodCloudCover = weatherData.cloudCover < 30
