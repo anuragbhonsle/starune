@@ -485,7 +485,7 @@ function App() {
         </div>
         <div className="flex items-center space-x-4">
           <a
-            href="https://github.com/yourusername/stargaze"
+            href="https://github.com/anuragbhonsle/starune"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white/10 backdrop-blur-md rounded-lg p-2 hover:bg-white/20 transition-all duration-300"
