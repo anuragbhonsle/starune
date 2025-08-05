@@ -31,10 +31,20 @@ app.get("/api/weather", async (req, res) => {
     }
 
     const apiKey = process.env.OPENWEATHER_API_KEY;
+    console.log("API Key:", apiKey ? "Present" : "Missing");
+
+    if (!apiKey) {
+      return res
+        .status(500)
+        .json({ error: "OpenWeatherMap API key not found" });
+    }
+
     const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${apiKey}&units=metric`;
+    console.log("Weather URL:", weatherUrl);
 
     const response = await axios.get(weatherUrl);
     const weatherData = response.data;
+    console.log("Weather Data:", JSON.stringify(weatherData, null, 2));
 
     // Extract relevant weather data for stargazing
     const realWeatherData = {
@@ -49,6 +59,7 @@ app.get("/api/weather", async (req, res) => {
         (weatherData.main?.humidity || 0) < 80,
     };
 
+    console.log("Processed Weather Data:", realWeatherData);
     res.json(realWeatherData);
   } catch (error) {
     console.error("Error fetching weather data:", error);
