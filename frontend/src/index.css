@@ -1,0 +1,622 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for star gazing app */
+body {
+  background-color: black !important;
+  color: white !important;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Test class */
+.css-test {
+  background-color: red !important;
+  color: white !important;
+  padding: 20px !important;
+  margin: 20px !important;
+  border: 3px solid yellow !important;
+}
+
+/* Enhanced star animations */
+.star {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  animation: starFloat 8s linear infinite;
+  width: 2px;
+  height: 2px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.star:nth-child(odd) {
+  animation-delay: 2s;
+  animation-duration: 5s;
+}
+
+.star:nth-child(even) {
+  animation-delay: 1s;
+  animation-duration: 3s;
+}
+
+.star:nth-child(3n) {
+  width: 1px;
+  height: 1px;
+  opacity: 0.7;
+  animation-delay: 0.5s;
+  animation-duration: 6s;
+}
+
+.star:nth-child(5n) {
+  width: 3px;
+  height: 3px;
+  opacity: 1;
+  animation-delay: 3s;
+  animation-duration: 4s;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  25% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+  75% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes starFloat {
+  0% {
+    transform: scale(0.1) translateZ(-500px);
+    opacity: 0;
+  }
+  10% {
+    transform: scale(0.3) translateZ(-400px);
+    opacity: 0.1;
+  }
+  20% {
+    transform: scale(0.5) translateZ(-300px);
+    opacity: 0.3;
+  }
+  30% {
+    transform: scale(0.7) translateZ(-200px);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(0.9) translateZ(-100px);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.2) translateZ(0px);
+    opacity: 1;
+  }
+  60% {
+    transform: scale(1.5) translateZ(100px);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(1.8) translateZ(200px);
+    opacity: 0.6;
+  }
+  80% {
+    transform: scale(2.1) translateZ(300px);
+    opacity: 0.4;
+  }
+  90% {
+    transform: scale(2.4) translateZ(400px);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(2.7) translateZ(500px);
+    opacity: 0;
+  }
+}
+
+/* Additional stars container */
+.stars-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* Glassmorphism enhancements - TRANSPARENT NO SHADOW */
+div.glass-panel {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Enhanced form styling - KEEP ORIGINAL STYLING */
+input.form-input {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  transition: all 0.3s ease !important;
+  color: white !important;
+}
+
+input.form-input:focus {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(59, 130, 246, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+  outline: none !important;
+}
+
+input.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Button hover effects - WHITE BUTTONS WITH BLACK TEXT */
+button.glass-button {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  transition: all 0.3s ease !important;
+  color: black !important;
+}
+
+button.glass-button:hover {
+  background: rgba(255, 255, 255, 1) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Modal backdrop - HIGHER SPECIFICITY */
+div.modal-backdrop {
+  background: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Prediction cards - LESS TRANSPARENT */
+div.prediction-card {
+  background: rgba(0, 0, 0, 0.6) !important;
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  padding: 2rem !important;
+  max-width: 28rem !important;
+  width: 90% !important;
+  margin: 0 1rem !important;
+}
+
+/* Weather metric cards - TRANSPARENT NO SHADOW */
+div.weather-metric {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+div.weather-metric:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Additional glassmorphism classes for better visibility - TRANSPARENT NO SHADOW */
+div.glass-effect {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Fix for potential z-index issues */
+.relative {
+  position: relative;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.z-50 {
+  z-index: 50;
+}
+
+/* Ensure proper text contrast */
+.text-white {
+  color: white !important;
+}
+
+.text-gray-300 {
+  color: rgb(209 213 219) !important;
+}
+
+.text-gray-400 {
+  color: rgb(156 163 175) !important;
+}
+
+/* Fix for form inputs - KEEP ORIGINAL STYLING */
+input[type="text"],
+input[type="number"] {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+  padding: 0.75rem 1rem !important;
+  border-radius: 0.5rem !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  outline: none !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Override any conflicting Tailwind styles */
+.bg-white\/10 {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.border-white\/20 {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Status background colors - MADE TRANSPARENT */
+.bg-blue-900\/30 {
+  background-color: transparent !important;
+}
+
+.border-blue-500\/30 {
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+.bg-green-900\/30 {
+  background-color: transparent !important;
+}
+
+.border-green-500\/30 {
+  border-color: rgba(34, 197, 94, 0.3) !important;
+}
+
+.bg-red-900\/30 {
+  background-color: transparent !important;
+}
+
+.border-red-500\/30 {
+  border-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+/* Button background colors - WHITE BUTTONS */
+.bg-blue-600 {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  color: black !important;
+}
+
+.hover\:bg-blue-700:hover {
+  background-color: rgba(255, 255, 255, 1) !important;
+  color: black !important;
+}
+
+.bg-gray-600 {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  color: black !important;
+}
+
+.hover\:bg-gray-700:hover {
+  background-color: rgba(255, 255, 255, 1) !important;
+  color: black !important;
+}
+
+/* Additional fixes for better visibility and structure */
+.min-h-screen {
+  min-height: 100vh !important;
+}
+
+.bg-black {
+  background-color: black !important;
+}
+
+/* Ensure proper spacing and layout */
+.p-6 {
+  padding: 1.5rem !important;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem !important;
+}
+
+.mb-4 {
+  margin-bottom: 1rem !important;
+}
+
+.space-y-4 > * + * {
+  margin-top: 1rem !important;
+}
+
+/* Fix for grid layout */
+.grid {
+  display: grid !important;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+.gap-8 {
+  gap: 2rem !important;
+}
+
+/* Fix for flexbox layout */
+.flex {
+  display: flex !important;
+}
+
+.justify-between {
+  justify-content: space-between !important;
+}
+
+.items-start {
+  align-items: flex-start !important;
+}
+
+.items-center {
+  align-items: center !important;
+}
+
+.space-x-4 > * + * {
+  margin-left: 1rem !important;
+}
+
+/* Enhanced typography and font styles */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.025em !important;
+}
+
+/* Enhanced text sizing with better typography */
+.text-4xl {
+  font-size: 2.5rem !important;
+  line-height: 1.2 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.05em !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.text-2xl {
+  font-size: 1.75rem !important;
+  line-height: 1.3 !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.025em !important;
+}
+
+.text-xl {
+  font-size: 1.375rem !important;
+  line-height: 1.4 !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.text-sm {
+  font-size: 0.875rem !important;
+  line-height: 1.5 !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.01em !important;
+}
+
+/* Enhanced font weights */
+.font-bold {
+  font-weight: 700 !important;
+  letter-spacing: -0.025em !important;
+}
+
+.font-semibold {
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.font-medium {
+  font-weight: 500 !important;
+  letter-spacing: 0.005em !important;
+}
+
+/* Enhanced text colors */
+.text-white {
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+.text-gray-300 {
+  color: #d1d5db !important;
+  font-weight: 400 !important;
+}
+
+.text-gray-400 {
+  color: #9ca3af !important;
+  font-weight: 400 !important;
+}
+
+/* Fix for border radius */
+.rounded-lg {
+  border-radius: 0.5rem !important;
+}
+
+/* Fix for backdrop blur */
+.backdrop-blur-md {
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+/* Fix for transitions */
+.transition-all {
+  transition-property: all !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition-duration: 150ms !important;
+}
+
+.duration-300 {
+  transition-duration: 300ms !important;
+}
+
+/* Fix for hover effects */
+.hover\:bg-white\/20:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Fix for max width and centering */
+.max-w-7xl {
+  max-width: 80rem !important;
+}
+
+.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Force content to fit 16:9 ratio without scrollbars */
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
+header {
+  padding-top: 0.5rem !important;
+  margin-top: 0 !important;
+  height: 15vh !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+main {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  height: 80vh !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  padding-bottom: 1rem !important;
+}
+
+/* Move the two main panels higher and make them shorter */
+.glass-panel {
+  transform: translateY(-10px) !important;
+  margin-top: 0 !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+  min-height: auto !important;
+  height: auto !important;
+  max-height: 65vh !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Force buttons to be narrower */
+.glass-button {
+  width: 60% !important;
+  max-width: 300px !important;
+  border-radius: 1rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em !important;
+  text-transform: none !important;
+  font-size: 0.95rem !important;
+}
+
+/* Fix for width and padding */
+.w-full {
+  width: 100% !important;
+}
+
+.w-6 {
+  width: 1.5rem !important;
+}
+
+.h-6 {
+  height: 1.5rem !important;
+}
+
+/* Fix for positioning */
+.fixed {
+  position: fixed !important;
+}
+
+.inset-0 {
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+}
+
+/* Fix for centering */
+.flex.items-center.justify-center {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Fix for modal styling */
+.max-w-md {
+  max-width: 28rem !important;
+}
+
+/* Fix for button styling */
+.py-3 {
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
+}
+
+.px-4 {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+/* Fix for text colors */
+.text-blue-200 {
+  color: rgb(191 219 254) !important;
+}
+
+.text-green-200 {
+  color: rgb(187 247 208) !important;
+}
+
+.text-green-300 {
+  color: rgb(134 239 172) !important;
+}
+
+.text-green-400 {
+  color: rgb(74 222 128) !important;
+}
+
+.text-red-400 {
+  color: rgb(248 113 113) !important;
+}
+
+/* Fix for flex utilities */
+.flex-1 {
+  flex: 1 1 0% !important;
+}
+
+.flex.space-x-3 > * + * {
+  margin-left: 0.75rem !important;
+}

@@ -1,0 +1,497 @@
+/* App-specific styles for enhanced glassmorphism and structure */
+
+/* Ensure the main container has proper structure */
+.min-h-screen {
+  min-height: 100vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Enhanced glassmorphism for panels - TRANSPARENT NO SHADOW */
+.glass-panel {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 0.5rem !important;
+  padding: 1.5rem !important;
+}
+
+/* Enhanced button styling - WHITE BUTTONS WITH BLACK TEXT */
+.glass-button {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: black !important;
+  width: 100% !important;
+  padding: 0.75rem 1rem !important;
+  border-radius: 0.5rem !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.glass-button:hover {
+  background: rgba(255, 255, 255, 1) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Enhanced form input styling - KEEP CURRENT STYLING */
+.form-input {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+  padding: 0.5rem 0.75rem !important;
+  border-radius: 0.5rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.form-input:focus {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(59, 130, 246, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+  outline: none !important;
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Modal styling */
+.modal-backdrop {
+  background: rgba(0, 0, 0, 0.5) !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 50 !important;
+}
+
+.prediction-card {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 0.5rem !important;
+  padding: 1.5rem !important;
+  max-width: 28rem !important;
+  width: 100% !important;
+  margin: 0 1rem !important;
+}
+
+/* Weather metric styling - TRANSPARENT */
+.weather-metric {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0.5rem !important;
+  padding: 0.75rem !important;
+  text-align: center !important;
+  transition: all 0.3s ease !important;
+}
+
+.weather-metric:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Enhanced header styling */
+header {
+  position: relative !important;
+  z-index: 10 !important;
+  padding: 1.5rem !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+}
+
+/* Enhanced main content styling */
+main {
+  position: relative !important;
+  z-index: 10 !important;
+  padding: 1.5rem !important;
+  flex: 1 !important;
+}
+
+/* Grid layout fixes */
+.grid {
+  display: grid !important;
+  gap: 2rem !important;
+  max-width: 80rem !important;
+  margin: 0 auto !important;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Flexbox utilities */
+.flex {
+  display: flex !important;
+}
+
+.justify-between {
+  justify-content: space-between !important;
+}
+
+.items-start {
+  align-items: flex-start !important;
+}
+
+.items-center {
+  align-items: center !important;
+}
+
+.space-x-4 > * + * {
+  margin-left: 1rem !important;
+}
+
+/* Text utilities */
+.text-white {
+  color: white !important;
+}
+
+.text-gray-300 {
+  color: rgb(209 213 219) !important;
+}
+
+.text-gray-400 {
+  color: rgb(156 163 175) !important;
+}
+
+.text-4xl {
+  font-size: 2.25rem !important;
+  line-height: 2.5rem !important;
+}
+
+.text-2xl {
+  font-size: 1.5rem !important;
+  line-height: 2rem !important;
+}
+
+.text-xl {
+  font-size: 1.25rem !important;
+  line-height: 1.75rem !important;
+}
+
+.text-sm {
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+}
+
+.font-bold {
+  font-weight: 700 !important;
+}
+
+.font-semibold {
+  font-weight: 600 !important;
+}
+
+.font-medium {
+  font-weight: 500 !important;
+}
+
+/* Spacing utilities */
+.p-6 {
+  padding: 1.5rem !important;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem !important;
+}
+
+.mb-4 {
+  margin-bottom: 1rem !important;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem !important;
+}
+
+.space-y-4 > * + * {
+  margin-top: 1rem !important;
+}
+
+/* Button utilities */
+.w-full {
+  width: 100% !important;
+}
+
+.py-3 {
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
+}
+
+.px-4 {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+/* Border radius */
+.rounded-lg {
+  border-radius: 0.5rem !important;
+}
+
+/* Backdrop blur */
+.backdrop-blur-md {
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+/* Transitions */
+.transition-all {
+  transition-property: all !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition-duration: 150ms !important;
+}
+
+.duration-300 {
+  transition-duration: 300ms !important;
+}
+
+/* Hover effects */
+.hover\:bg-white\/20:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Width and height */
+.w-6 {
+  width: 1.5rem !important;
+}
+
+.h-6 {
+  height: 1.5rem !important;
+}
+
+/* Positioning */
+.relative {
+  position: relative !important;
+}
+
+.fixed {
+  position: fixed !important;
+}
+
+.inset-0 {
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+}
+
+.z-10 {
+  z-index: 10 !important;
+}
+
+.z-50 {
+  z-index: 50 !important;
+}
+
+/* Centering */
+.flex.items-center.justify-center {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Max width */
+.max-w-md {
+  max-width: 28rem !important;
+}
+
+/* Background colors */
+.bg-black {
+  background-color: black !important;
+}
+
+.bg-white\/10 {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.border-white\/20 {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Text colors for status indicators */
+.text-blue-200 {
+  color: rgb(191 219 254) !important;
+}
+
+.text-green-200 {
+  color: rgb(187 247 208) !important;
+}
+
+.text-green-300 {
+  color: rgb(134 239 172) !important;
+}
+
+.text-green-400 {
+  color: rgb(74 222 128) !important;
+}
+
+.text-red-400 {
+  color: rgb(248 113 113) !important;
+}
+
+/* Status background colors - MADE TRANSPARENT */
+.bg-blue-900\/30 {
+  background-color: transparent !important;
+}
+
+.border-blue-500\/30 {
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+.bg-green-900\/30 {
+  background-color: transparent !important;
+}
+
+.border-green-500\/30 {
+  border-color: rgba(34, 197, 94, 0.3) !important;
+}
+
+.bg-red-900\/30 {
+  background-color: transparent !important;
+}
+
+.border-red-500\/30 {
+  border-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+/* Button background colors - WHITE BUTTONS */
+.bg-blue-600 {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  color: black !important;
+}
+
+.hover\:bg-blue-700:hover {
+  background-color: rgba(255, 255, 255, 1) !important;
+  color: black !important;
+}
+
+.bg-gray-600 {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  color: black !important;
+}
+
+.hover\:bg-gray-700:hover {
+  background-color: rgba(255, 255, 255, 1) !important;
+  color: black !important;
+}
+
+/* Flex utilities */
+.flex-1 {
+  flex: 1 1 0% !important;
+}
+
+.flex.space-x-3 > * + * {
+  margin-left: 0.75rem !important;
+}
+
+/* Grid utilities */
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+.gap-4 {
+  gap: 1rem !important;
+}
+
+/* Text center */
+.text-center {
+  text-align: center !important;
+}
+
+/* Padding utilities */
+.p-4 {
+  padding: 1rem !important;
+}
+
+.p-3 {
+  padding: 0.75rem !important;
+}
+
+.px-3 {
+  padding-left: 0.75rem !important;
+  padding-right: 0.75rem !important;
+}
+
+.py-2 {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+
+.py-1 {
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+}
+
+/* Margin utilities */
+.mt-6 {
+  margin-top: 1.5rem !important;
+}
+
+.mx-4 {
+  margin-left: 1rem !important;
+  margin-right: 1rem !important;
+}
+
+/* Block display */
+.block {
+  display: block !important;
+}
+
+/* Label styling */
+label {
+  display: block !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  color: rgb(209 213 219) !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Animation utilities */
+.animate-spin {
+  animation: spin 1s linear infinite !important;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Border utilities */
+.border-b-2 {
+  border-bottom-width: 2px !important;
+}
+
+.border-white {
+  border-color: white !important;
+}
+
+/* Height and width utilities */
+.h-8 {
+  height: 2rem !important;
+}
+
+.w-8 {
+  width: 2rem !important;
+}
+
+/* Responsive utilities */
+@media (min-width: 1024px) {
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
