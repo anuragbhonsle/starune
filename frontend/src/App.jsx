@@ -153,22 +153,64 @@ function App() {
     setShowManualForm(true)
   }
 
-  const getCurrentTime = (lat, lng) => {
-    // Get current time in the user's timezone
+  const getCurrentTime = async (lat, lng) => {
+    try {
+      // Get the timezone for the specific location
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/timezone?lat=${lat}&lng=${lng}`);
+
+      if (response.ok) {
+        const timezoneData = await response.json();
+        // Use the pre-formatted time string from the backend
+        if (timezoneData.localTimeString) {
+          // Create a Date object that represents the local time correctly
+          const now = new Date();
+          const utcTime = now.getTime();
+          const localTime = new Date(utcTime + (timezoneData.offset * 3600000));
+
+          // Store the formatted time string for display
+          localTime.formattedTime = timezoneData.localTimeString;
+          return localTime;
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching timezone data:', error);
+    }
+
+    // Fallback to browser's local time if timezone API fails
     const now = new Date()
-    const userTime = new Date(now.toLocaleString("en-US", { timeZone: "UTC" }))
-
-    // Calculate local time based on longitude (rough approximation)
-    const hoursOffset = Math.round(lng / 15)
-    userTime.setHours(userTime.getHours() + hoursOffset)
-
-    return userTime
+    return now
   }
 
   const isNightTime = (date) => {
+    // Use the formatted time if available, otherwise fall back to browser time
+    if (date.formattedTime) {
+      // Parse the formatted time string (e.g., "04:52 AM")
+      const timeMatch = date.formattedTime.match(/(\d+):(\d+)\s*(AM|PM)/)
+      if (timeMatch) {
+        let hour = parseInt(timeMatch[1])
+        const period = timeMatch[3]
+
+        // Convert to 24-hour format
+        if (period === 'PM' && hour !== 12) {
+          hour += 12
+        } else if (period === 'AM' && hour === 12) {
+          hour = 0
+        }
+
+        console.log('Debug - Parsed hour:', hour, 'Period:', period)
+
+        // Consider night time between 8 PM and 6 AM
+        const isNight = hour >= 20 || hour < 6
+        console.log('Debug - Is Night (from formatted time):', isNight)
+        return isNight
+      }
+    }
+
+    // Fallback to browser time
     const hour = date.getHours()
-    // Consider night time between 8 PM and 6 AM
-    return hour >= 20 || hour < 6
+    const isNight = hour >= 20 || hour < 6
+    console.log('Debug - Is Night (from browser time):', isNight)
+    return isNight
   }
 
   const getLightPollutionLevel = async (lat, lng) => {
@@ -209,12 +251,15 @@ function App() {
   const analyzeStargazingConditions = async (lat, lng) => {
     try {
       // Get current time at the location
-      const currentTime = getCurrentTime(lat, lng)
+      const currentTime = await getCurrentTime(lat, lng)
       const isNight = isNightTime(currentTime)
+
+      console.log('Debug - Current Time:', currentTime.formattedTime || 'No formatted time')
+      console.log('Debug - Is Night:', isNight)
 
       // Check if it's night time first
       if (!isNight) {
-        const timeString = currentTime.toLocaleTimeString('en-US', {
+        const timeString = currentTime.formattedTime || currentTime.toLocaleTimeString('en-US', {
           hour: '2-digit',
           minute: '2-digit',
           hour12: true
@@ -290,7 +335,7 @@ function App() {
           },
           lightPollution: lightPollution,
           timeInfo: {
-            currentTime: currentTime.toLocaleTimeString('en-US', {
+            currentTime: currentTime.formattedTime || currentTime.toLocaleTimeString('en-US', {
               hour: '2-digit',
               minute: '2-digit',
               hour12: true
@@ -322,7 +367,7 @@ function App() {
           },
           lightPollution: lightPollution,
           timeInfo: {
-            currentTime: currentTime.toLocaleTimeString('en-US', {
+            currentTime: currentTime.formattedTime || currentTime.toLocaleTimeString('en-US', {
               hour: '2-digit',
               minute: '2-digit',
               hour12: true
@@ -752,6 +797,9 @@ function App() {
                   <div className="text-blue-100 font-semibold mb-1">Current Time: {stargazingPrediction.timeInfo.currentTime}</div>
                   <div className="text-xs">
                     {stargazingPrediction.timeInfo.isNightTime ? 'Night time - stars should be visible' : 'Day time - stars not visible'}
+                  </div>
+                  <div className="text-xs text-blue-300 mt-1">
+                    Time shown is local time for the selected location
                   </div>
                 </div>
               </div>

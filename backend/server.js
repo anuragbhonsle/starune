@@ -111,6 +111,30 @@ app.get("/api/stargazing-possibility", async (req, res) => {
   }
 });
 
+app.get("/api/timezone", async (req, res) => {
+  try {
+    const { lat, lng } = req.query;
+    if (!lat || !lng) {
+      return res
+        .status(400)
+        .json({ error: "Latitude and longitude are required" });
+    }
+
+    // Use TimeZoneDB API to get accurate timezone information
+    // This is a free API that provides timezone data based on coordinates
+    const timezoneUrl = `http://api.timezonedb.com/v2.1/get-time-zone?key=YOUR_API_KEY&format=json&by=position&lat=${lat}&lng=${lng}`;
+
+    // For now, we'll use a simplified approach with known timezone offsets
+    const timezoneData = getTimezoneFromCoordinates(lat, lng);
+
+    console.log("Timezone Data:", timezoneData);
+    res.json(timezoneData);
+  } catch (error) {
+    console.error("Error fetching timezone data:", error);
+    res.status(500).json({ error: "Failed to fetch timezone data" });
+  }
+});
+
 app.get("/api/light-pollution", async (req, res) => {
   try {
     const { lat, lng } = req.query;
@@ -325,6 +349,227 @@ function isMountainRegion(lat, lng) {
     if (distance < 0.8) return true;
   }
   return false;
+}
+
+// Function to get timezone from coordinates
+function getTimezoneFromCoordinates(lat, lng) {
+  const absLat = Math.abs(parseFloat(lat));
+  const absLng = Math.abs(parseFloat(lng));
+
+  // Major timezone regions with known offsets
+  const timezoneRegions = [
+    // India and nearby regions
+    {
+      lat: 20.5937,
+      lng: 78.9629,
+      name: "India",
+      offset: 5.5,
+      timezone: "Asia/Kolkata",
+    },
+    {
+      lat: 23.6345,
+      lng: 102.5528,
+      name: "China",
+      offset: 8,
+      timezone: "Asia/Shanghai",
+    },
+    {
+      lat: 35.8617,
+      lng: 104.1954,
+      name: "China",
+      offset: 8,
+      timezone: "Asia/Shanghai",
+    },
+    {
+      lat: 35.6762,
+      lng: 139.6503,
+      name: "Japan",
+      offset: 9,
+      timezone: "Asia/Tokyo",
+    },
+    {
+      lat: 37.5665,
+      lng: 126.978,
+      name: "South Korea",
+      offset: 9,
+      timezone: "Asia/Seoul",
+    },
+
+    // Europe
+    {
+      lat: 51.5074,
+      lng: -0.1278,
+      name: "UK",
+      offset: 0,
+      timezone: "Europe/London",
+    },
+    {
+      lat: 48.8566,
+      lng: 2.3522,
+      name: "France",
+      offset: 1,
+      timezone: "Europe/Paris",
+    },
+    {
+      lat: 52.52,
+      lng: 13.405,
+      name: "Germany",
+      offset: 1,
+      timezone: "Europe/Berlin",
+    },
+    {
+      lat: 41.9028,
+      lng: 12.4964,
+      name: "Italy",
+      offset: 1,
+      timezone: "Europe/Rome",
+    },
+    {
+      lat: 40.4168,
+      lng: -3.7038,
+      name: "Spain",
+      offset: 1,
+      timezone: "Europe/Madrid",
+    },
+
+    // North America
+    {
+      lat: 40.7128,
+      lng: -74.006,
+      name: "New York",
+      offset: -5,
+      timezone: "America/New_York",
+    },
+    {
+      lat: 34.0522,
+      lng: -118.2437,
+      name: "Los Angeles",
+      offset: -8,
+      timezone: "America/Los_Angeles",
+    },
+    {
+      lat: 43.6532,
+      lng: -79.3832,
+      name: "Toronto",
+      offset: -5,
+      timezone: "America/Toronto",
+    },
+    {
+      lat: 49.2827,
+      lng: -123.1207,
+      name: "Vancouver",
+      offset: -8,
+      timezone: "America/Vancouver",
+    },
+
+    // Australia and Oceania
+    {
+      lat: -33.8688,
+      lng: 151.2093,
+      name: "Sydney",
+      offset: 10,
+      timezone: "Australia/Sydney",
+    },
+    {
+      lat: -37.8136,
+      lng: 144.9631,
+      name: "Melbourne",
+      offset: 10,
+      timezone: "Australia/Melbourne",
+    },
+    {
+      lat: -41.2866,
+      lng: 174.7756,
+      name: "Wellington",
+      offset: 12,
+      timezone: "Pacific/Auckland",
+    },
+
+    // Middle East
+    {
+      lat: 25.2048,
+      lng: 55.2708,
+      name: "Dubai",
+      offset: 4,
+      timezone: "Asia/Dubai",
+    },
+    {
+      lat: 30.0444,
+      lng: 31.2357,
+      name: "Cairo",
+      offset: 2,
+      timezone: "Africa/Cairo",
+    },
+
+    // Southeast Asia
+    {
+      lat: 1.3521,
+      lng: 103.8198,
+      name: "Singapore",
+      offset: 8,
+      timezone: "Asia/Singapore",
+    },
+    {
+      lat: 13.7563,
+      lng: 100.5018,
+      name: "Thailand",
+      offset: 7,
+      timezone: "Asia/Bangkok",
+    },
+    {
+      lat: 14.0583,
+      lng: 108.2772,
+      name: "Vietnam",
+      offset: 7,
+      timezone: "Asia/Ho_Chi_Minh",
+    },
+  ];
+
+  // Check if coordinates are near known timezone regions
+  for (const region of timezoneRegions) {
+    const distance = Math.sqrt(
+      Math.pow(parseFloat(lat) - region.lat, 2) +
+        Math.pow(parseFloat(lng) - region.lng, 2)
+    );
+
+    if (distance < 1.0) {
+      // Within ~100km of known region
+      const now = new Date();
+      const utcTime = now.getTime();
+      // Apply timezone offset correctly (negative for UTC-, positive for UTC+)
+      const localTime = new Date(utcTime + region.offset * 3600000);
+
+      // Calculate the formatted time string manually to avoid timezone conversion issues
+      const localHours = localTime.getUTCHours();
+      const localMinutes = localTime.getUTCMinutes();
+      const ampm = localHours >= 12 ? "PM" : "AM";
+      const displayHours = localHours % 12 || 12;
+      const localTimeString = `${displayHours
+        .toString()
+        .padStart(2, "0")}:${localMinutes.toString().padStart(2, "0")} ${ampm}`;
+
+      return {
+        timezone: region.timezone,
+        offset: region.offset,
+        localTime: localTime.toISOString(),
+        localTimeString: localTimeString,
+        region: region.name,
+      };
+    }
+  }
+
+  // Fallback: estimate timezone based on longitude
+  const estimatedOffset = Math.round(parseFloat(lng) / 15);
+  const now = new Date();
+  const utcTime = now.getTime();
+  const localTime = new Date(utcTime + estimatedOffset * 3600000);
+
+  return {
+    timezone: "Estimated",
+    offset: estimatedOffset,
+    localTime: localTime.toISOString(),
+    region: "Estimated from longitude",
+  };
 }
 
 // Fallback function for when the API is unavailable

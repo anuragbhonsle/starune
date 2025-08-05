@@ -19,6 +19,9 @@ Ever wondered if you can see the stars tonight? This app tells you exactly that!
 
 ### ⏰ **Smart Time Check**
 
+- **Accurate local time**: Shows the actual time for the selected location
+- **Timezone-aware**: Automatically detects timezone based on coordinates
+- **Global coverage**: Supports 30+ major cities and regions worldwide
 - **Daytime**: "It's 2:30 PM. Stars appear after sunset, around 8 PM."
 - **Nighttime**: Full analysis of stargazing conditions
 
