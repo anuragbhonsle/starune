@@ -263,7 +263,7 @@ function App() {
           if (!isGoodHumidity) issues.push("high humidity")
           if (!isGoodLightPollution) issues.push("light pollution")
 
-          recommendation = `Stargazing isn't ideal right now - ${issues.join(', ')}.`
+          recommendation = `Stargazing isn't ideal - ${issues.join(', ')}.`
         }
 
         setStargazingPrediction({
@@ -508,15 +508,14 @@ function App() {
               background: 'transparent',
               border: '1px solid rgba(255, 255, 255, 0.15)',
               borderRadius: '0.5rem',
-              padding: '1rem',
-              paddingBottom: 'calc(1rem + 150px)'
+              padding: '0.5rem'
             }}
           >
-            <div className="mb-6" style={{ paddingBottom: '30px' }}>
+            <div className="mb-2">
               <h2 className="text-2xl font-semibold text-white mb-4" style={{ marginTop: '0', paddingTop: '0' }}>Tonight's Prediction</h2>
 
               {/* Night sky image */}
-              <div className="mb-4 rounded-lg overflow-hidden relative" style={{ marginTop: '20px' }}>
+              <div className="mb-4 rounded-lg overflow-hidden relative">
                 <img
                   src="/stars.jpg"
                   alt="Night sky with stars"
@@ -627,22 +626,7 @@ function App() {
                     </div>
                   </div>
 
-                  {/* Time Information */}
-                  {stargazingPrediction.timeInfo && (
-                    <div className="mt-4 p-3 bg-blue-900/30 border border-blue-500/30 rounded-lg" style={{
-                      background: 'rgba(30, 58, 138, 0.3)',
-                      border: '1px solid rgba(59, 130, 246, 0.3)',
-                      borderRadius: '0.5rem',
-                      padding: '0.75rem'
-                    }}>
-                      <div className="text-blue-200 text-sm">
-                        <div className="text-blue-100 font-semibold mb-1">Current Time: {stargazingPrediction.timeInfo.currentTime}</div>
-                        <div className="text-xs">
-                          {stargazingPrediction.timeInfo.isNightTime ? 'Night time - stars should be visible' : 'Day time - stars not visible'}
-                        </div>
-                      </div>
-                    </div>
-                  )}
+
                 </div>
               ) : (
                 <div className="text-gray-300 text-center py-8">
@@ -660,19 +644,18 @@ function App() {
               background: 'transparent',
               border: '1px solid rgba(255, 255, 255, 0.15)',
               borderRadius: '0.5rem',
-              padding: '1rem',
-              paddingBottom: 'calc(1rem + 150px)'
+              padding: '0.5rem'
             }}
           >
-            <div className="mb-6">
+            <div className="mb-2">
               <div
-                className="border border-white/30 rounded-lg p-4 mb-6"
+                className="border border-white/30 rounded-lg p-4 mb-2"
                 style={{
                   background: 'transparent',
                   border: '1px solid rgba(255, 255, 255, 0.15)',
                   borderRadius: '0.5rem',
                   padding: '0.5rem',
-                  marginBottom: '1.5rem'
+                  marginBottom: '1rem'
                 }}
               >
                 <p className="text-sm text-white" style={{ margin: '0' }}>
@@ -681,10 +664,10 @@ function App() {
                 </p>
               </div>
 
-              <div className="space-y-4 flex flex-col items-center">
+              <div className="space-y-3.5 flex flex-col items-center">
                 <button
                   onClick={detectLocation}
-                  className="glass-button text-white py-3 px-4 rounded-lg font-medium"
+                  className="glass-button text-white py-2 px-4 rounded-lg font-medium"
                   style={{ ...getButtonStyle('detect'), width: '40%' }}
                   onMouseEnter={() => setHoveredButton('detect')}
                   onMouseLeave={() => setHoveredButton(null)}
@@ -692,11 +675,11 @@ function App() {
                   Detect My Location
                 </button>
 
-                <div className="text-center text-gray-400">OR</div>
+                <div className="text-center text-gray-400 text-sm">OR</div>
 
                 <button
                   onClick={dropOnMap}
-                  className="glass-button text-white py-3 px-4 rounded-lg font-medium"
+                  className="glass-button text-white py-2 px-4 rounded-lg font-medium"
                   style={{ ...getButtonStyle('city'), width: '40%' }}
                   onMouseEnter={() => setHoveredButton('city')}
                   onMouseLeave={() => setHoveredButton(null)}
@@ -704,11 +687,11 @@ function App() {
                   Enter City & Country
                 </button>
 
-                <div className="text-center text-gray-400">OR</div>
+                <div className="text-center text-gray-400 text-sm">OR</div>
 
                 <button
                   onClick={enterManually}
-                  className="glass-button text-white py-3 px-4 rounded-lg font-medium"
+                  className="glass-button text-white py-2 px-4 rounded-lg font-medium"
                   style={{ ...getButtonStyle('coords'), width: '40%' }}
                   onMouseEnter={() => setHoveredButton('coords')}
                   onMouseLeave={() => setHoveredButton(null)}
@@ -722,8 +705,8 @@ function App() {
               <div
                 className="mt-6 p-4 bg-green-900/30 border border-green-500/30 rounded-lg"
                 style={{
-                  marginTop: '1.5rem',
-                  padding: '1rem',
+                  marginTop: '0.5rem',
+                  padding: '0.5rem',
                   background: 'rgba(20, 83, 45, 0.3)',
                   border: '1px solid rgba(34, 197, 94, 0.15)',
                   borderRadius: '0.5rem'
@@ -736,6 +719,27 @@ function App() {
                     {userLocation.city && (
                       <span> • {userLocation.city}, {userLocation.country}</span>
                     )}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Time Information */}
+            {stargazingPrediction && stargazingPrediction.timeInfo && (
+              <div
+                className="mt-4 p-4 bg-blue-900/30 border border-blue-500/30 rounded-lg"
+                style={{
+                  marginTop: '0.5rem',
+                  padding: '0.5rem',
+                  background: 'rgba(30, 58, 138, 0.3)',
+                  border: '1px solid rgba(59, 130, 246, 0.3)',
+                  borderRadius: '0.5rem'
+                }}
+              >
+                <div className="text-blue-200 text-sm">
+                  <div className="text-blue-100 font-semibold mb-1">Current Time: {stargazingPrediction.timeInfo.currentTime}</div>
+                  <div className="text-xs">
+                    {stargazingPrediction.timeInfo.isNightTime ? 'Night time - stars should be visible' : 'Day time - stars not visible'}
                   </div>
                 </div>
               </div>
@@ -837,6 +841,8 @@ function App() {
           </div>
         </div>
       )}
+
+
     </div>
   )
 }

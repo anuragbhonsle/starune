@@ -1,8 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Custom styles for star gazing app */
+html {
+  overflow: hidden !important;
+}
+
 body {
   background-color: black !important;
   color: white !important;
@@ -10,7 +16,20 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  overflow: hidden !important;
+}
+
+/* Allow touch scrolling on mobile while hiding scrollbar */
+@media (max-width: 768px) {
+  html {
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  body {
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
 }
 
 /* Test class */
@@ -334,7 +353,7 @@ input[type="number"]:focus {
 }
 
 .mb-6 {
-  margin-bottom: 1.5rem !important;
+  margin-bottom: 0.5rem !important;
 }
 
 .mb-4 {
@@ -386,8 +405,6 @@ input[type="number"]:focus {
 }
 
 /* Enhanced typography and font styles */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
-
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif !important;
@@ -494,18 +511,18 @@ body {
   margin-right: auto !important;
 }
 
-/* Force content to fit 16:9 ratio without scrollbars */
+/* Allow scrolling on mobile devices */
 body {
   margin: 0 !important;
   padding: 0 !important;
-  overflow: hidden !important;
-  height: 100vh !important;
+  overflow-x: hidden !important;
+  min-height: 100vh !important;
 }
 
 header {
   padding-top: 0.5rem !important;
   margin-top: 0 !important;
-  height: 15vh !important;
+  min-height: 15vh !important;
   display: flex !important;
   align-items: center !important;
 }
@@ -513,23 +530,24 @@ header {
 main {
   padding-top: 0 !important;
   margin-top: 0 !important;
-  height: 80vh !important;
+  min-height: 80vh !important;
   display: flex !important;
   align-items: flex-start !important;
-  padding-bottom: 1rem !important;
+  padding-bottom: 0 !important;
 }
 
-/* Move the two main panels higher and make them shorter */
+/* Allow panels to scroll and be responsive */
 .glass-panel {
   transform: translateY(-10px) !important;
   margin-top: 0 !important;
-  padding-top: 0.5rem !important;
-  padding-bottom: 0.5rem !important;
+  padding-top: 0.0625rem !important;
+  padding-bottom: 0 !important;
   min-height: auto !important;
   height: auto !important;
-  max-height: 65vh !important;
-  overflow: hidden !important;
+  max-height: none !important;
+  overflow: visible !important;
   border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  margin-bottom: 0 !important;
 }
 
 /* Force buttons to be narrower */
@@ -619,4 +637,31 @@ main {
 
 .flex.space-x-3 > * + * {
   margin-left: 0.75rem !important;
+}
+
+/* Mobile-specific fixes for better scrolling */
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto !important;
+    height: auto !important;
+  }
+
+  .min-h-screen {
+    min-height: auto !important;
+  }
+
+  main {
+    padding-bottom: 0 !important;
+  }
+
+  .glass-panel {
+    margin-bottom: 1rem !important;
+    transform: none !important;
+  }
+
+  /* Ensure buttons are properly sized on mobile */
+  .glass-button {
+    width: 80% !important;
+    max-width: 250px !important;
+  }
 }
