@@ -18,20 +18,22 @@
 
 /* Enhanced button styling - WHITE BUTTONS WITH BLACK TEXT */
 .glass-button {
-  background: rgba(255, 255, 255, 0.9) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-  color: black !important;
-  width: 100% !important;
-  padding: 0.75rem 1rem !important;
-  border-radius: 0.5rem !important;
-  font-weight: 500 !important;
-  transition: all 0.3s ease !important;
-  cursor: pointer !important;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .glass-button:hover {
-  background: rgba(255, 255, 255, 1) !important;
-  transform: translateY(-2px) !important;
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 /* Enhanced form input styling - KEEP CURRENT STYLING */
@@ -494,4 +496,36 @@ label {
   .lg\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
+}
+
+/* Twinkle animation for stars (global) */
+@keyframes twinkle {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+/* Zoom-in animation for stars background */
+@keyframes starZoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.75);
+  }
+}
+/* App.css or global styles */
+.star-glowy {
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4),
+    0 0 16px rgba(255, 255, 255, 0.3), 0 0 24px rgba(255, 255, 255, 0.2);
+}
+
+.stars-zoom {
+  animation: starZoom 7s linear infinite alternate;
 }
