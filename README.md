@@ -71,7 +71,7 @@ Purpose: Provides current weather data like cloud cover, humidity, visibility, e
 
 Endpoint used:
 
-https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}
+[https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}](https://openweathermap.org/api)
 
 ### OpenStreetMap API
 
@@ -79,9 +79,9 @@ Purpose: Converts city name to coordinates (geocoding) and vice versa (reverse g
 
 Endpoint used:
 
-https://nominatim.openstreetmap.org/search?q={city}&format=json
+[[https://nominatim.openstreetmap.org/search?q={city}&format=json
 
-https://nominatim.openstreetmap.org/reverse?lat={lat}&lon={lon}&format=json
+https://nominatim.openstreetmap.org/reverse?lat={lat}&lon={lon}&format=json](https://www.openstreetmap.org/#map=4/21.84/82.79)](https://www.openstreetmap.org/#map=4/21.84/82.79)
 
 
 
