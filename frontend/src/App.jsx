@@ -564,7 +564,7 @@ function App() {
               {/* Night sky image */}
               <div className="mb-4 rounded-lg overflow-hidden relative">
                 <img
-                  src="https://i.pinimg.com/originals/20/ff/e4/20ffe419796909feca129d6ab0e846ee.gif"
+                  src="/yourname.gif"
                   alt="Night sky with stars"
                   className="w-full rounded-lg"
                   style={{
