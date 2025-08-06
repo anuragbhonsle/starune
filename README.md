@@ -48,13 +48,18 @@ Tech Stack
 Frontend
 
 React
+
 Vite
+
 Tailwind CSS
+
 OpenStreetMap
 
 Backend
 
 Node.js
+
 Express
+
 OpenWeatherMap API
 
