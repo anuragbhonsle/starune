@@ -41,7 +41,7 @@ Clone the repo:
 ```bash
 git clone https://github.com/anuragbhonsle/starune.git
 cd starune
-
+```
 
 Tech Stack
 
@@ -57,4 +57,4 @@ Backend
 Node.js
 Express
 OpenWeatherMap API
-```
+
