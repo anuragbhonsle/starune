@@ -63,17 +63,17 @@ Node.js
 Express
 
 
-APIs Used
+## APIs Used
 
-OpenWeatherMap API
+### OpenWeatherMap API
 
-Purpose: Provides current weather data like cloud cover, humidity, visibility, etc.
+Purpose: Provides current weather data like cloud cover, humidity, visibility, etc.  
 
 Endpoint used:
 
 https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}
 
-🗺OpenStreetMap API
+### OpenStreetMap API
 
 Purpose: Converts city name to coordinates (geocoding) and vice versa (reverse geocoding)
 
