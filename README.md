@@ -45,7 +45,7 @@ cd starune
 
 Tech Stack
 
-Frontend
+### Frontend
 
 React
 
@@ -55,7 +55,7 @@ Tailwind CSS
 
 OpenStreetMap
 
-Backend
+### Backend
 
 Node.js
 
