@@ -54,7 +54,6 @@ Vite
 
 Tailwind CSS
 
-OpenStreetMap
 
 ### Backend
 
