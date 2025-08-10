@@ -32,7 +32,7 @@ Check Starune - https://starune.vercel.app/
 
 ### Prerequisites
 
-- Node.js (v16+)
+- Node.js 
 - npm
 
 ### Setup
