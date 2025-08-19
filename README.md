@@ -81,7 +81,8 @@ Endpoint used:
 
 https://nominatim.openstreetmap.org
 
-## Note: If the APIs are not responding, it's likely because the backend server 
+## Note: 
+If the APIs are not responding, it's likely because the backend server 
 is not running locally on my machine at the moment.  
 Please try again later, or clone the repo and run the backend yourself using:
 
