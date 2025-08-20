@@ -9,7 +9,10 @@ export default defineConfig({
   },
   base: "/",
   server: {
-    allowedHosts: ["34c338af3541.ngrok-free.app"],
+    allowedHosts: [
+      "34c338af3541.ngrok-free.app",
+      "stargaze-backend.onrender.com",
+    ],
   },
   define: {
     "process.env.VITE_API_URL": JSON.stringify(
