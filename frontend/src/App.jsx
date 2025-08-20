@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react'
 import { motion } from "framer-motion";
 function App() {
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://renewed-firmly-colt.ngrok-free.app'
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
   const [issData, setIssData] = useState({
     latitude: 0,
     longitude: 0,
