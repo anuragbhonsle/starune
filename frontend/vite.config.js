@@ -9,7 +9,7 @@ export default defineConfig({
   },
   base: "/",
   server: {
-    allowedHosts: ["renewed-firmly-colt.ngrok-free.app"],
+    allowedHosts: ["34c338af3541.ngrok-free.app"],
   },
   define: {
     "process.env.VITE_API_URL": JSON.stringify(

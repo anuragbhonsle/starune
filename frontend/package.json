@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:ngrok": "cross-env VITE_API_URL=https://renewed-firmly-colt.ngrok-free.app vite",
+    "dev:ngrok": "cross-env VITE_API_URL=https://34c338af3541.ngrok-free.app vite",
     "build": "vite build",
-    "build:ngrok": "cross-env VITE_API_URL=https://renewed-firmly-colt.ngrok-free.app vite build",
+    "build:render": "cross-env VITE_API_URL=https://your-app-name.onrender.com vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
