@@ -3,8 +3,7 @@
 **Starune** helps you check if the sky is clear enough for stargazing at your location.  
 Enter your coordinates or search by city, and it’ll give you real-time weather and visibility data to help you plan your night under the stars.
 
-Check Starune - https://starune.vercel.app/
----
+## Check Starune - https://starune.vercel.app/
 
 ## Features
 
@@ -32,7 +31,7 @@ Check Starune - https://starune.vercel.app/
 
 ### Prerequisites
 
-- Node.js 
+- Node.js
 - npm
 
 ### Setup
@@ -54,7 +53,6 @@ Vite
 
 Tailwind CSS
 
-
 ### Backend
 
 Node.js
@@ -67,7 +65,7 @@ Axios
 
 ### OpenWeatherMap API
 
-Purpose: Provides current weather data like cloud cover, humidity, visibility, etc.  
+Purpose: Provides current weather data like cloud cover, humidity, visibility, etc.
 
 Endpoint used:
 
@@ -81,12 +79,10 @@ Endpoint used:
 
 https://nominatim.openstreetmap.org
 
-## Note: 
-If the APIs are not responding, it's likely because the backend server 
+## Note:
+
+If the APIs are not responding, it's likely because the backend server
 is not running locally on my machine at the moment.  
-Please try again later, or clone the repo and run the backend yourself using:
+Please try again later, or clone the repo and run the backend yourself using
 
 pm2 start ecosystem.config.js
-
-
-
