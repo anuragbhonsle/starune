@@ -79,7 +79,7 @@ Endpoint used:
 
 https://nominatim.openstreetmap.org
 
-🚀 Production Upgrade
+###🚀 Production Upgrade
 
 Stargaze is now officially **live and independent** from local machines!
 
