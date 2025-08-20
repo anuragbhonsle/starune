@@ -8,4 +8,12 @@ export default defineConfig({
     outDir: "dist",
   },
   base: "/",
+  server: {
+    allowedHosts: ["renewed-firmly-colt.ngrok-free.app"],
+  },
+  define: {
+    "process.env.VITE_API_URL": JSON.stringify(
+      process.env.VITE_API_URL || "https://renewed-firmly-colt.ngrok-free.app"
+    ),
+  },
 });
