@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build:ngrok",
+  "buildCommand": "npm run build:render",
   "outputDirectory": "dist",
   "rewrites": [
     {
