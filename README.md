@@ -85,8 +85,8 @@ Stargaze is now officially **live and independent** from local machines!
 
 ### What’s New
 
-- Backend hosted on [Render] → always online
-- Frontend deployed on [Vercel]
+- Backend hosted on Render → always online
+- Frontend deployed on Vercel
 - No more ngrok or PM2 headaches
 - Works 24/7, even if the laptop is off
 - Easy to share with friends & focus on building features
