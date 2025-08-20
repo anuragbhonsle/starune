@@ -1,5 +1,5 @@
 {
-  "buildCommand": "VITE_API_URL=https://renewed-firmly-colt.ngrok-free.app npm run build",
+  "buildCommand": "cd frontend && npm install && npm run build:ngrok",
   "outputDirectory": "frontend/dist",
   "rewrites": [
     {
