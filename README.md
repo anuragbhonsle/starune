@@ -79,10 +79,16 @@ Endpoint used:
 
 https://nominatim.openstreetmap.org
 
-## Note:
+🚀 Production Upgrade
 
-If the APIs are not responding, it's likely because the backend server
-is not running locally on my machine at the moment.  
-Please try again later, or clone the repo and run the backend yourself using
+Stargaze is now officially **live and independent** from local machines!
 
-pm2 start ecosystem.config.js
+### What’s New
+
+- Backend hosted on [Render](https://stargaze-backend.onrender.com) → always online
+- Frontend deployed on [Vercel](https://your-frontend-url.vercel.app)
+- No more ngrok or PM2 headaches
+- Works 24/7, even if the laptop is off
+- Easy to share with friends & focus on building features
+
+This little upgrade turns our hobby project into a **real production app**!
