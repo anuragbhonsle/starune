@@ -1,5 +1,5 @@
 {
-  "buildCommand": "cd frontend && npm install && npm run build:ngrok",
+  "buildCommand": "npm run build:ngrok",
   "outputDirectory": "frontend/dist",
   "rewrites": [
     {
