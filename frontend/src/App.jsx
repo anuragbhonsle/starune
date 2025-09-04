@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 function App() {
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+  const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
   const [issData, setIssData] = useState({
     latitude: 0,
     longitude: 0,
@@ -56,15 +56,8 @@ function App() {
   useEffect(() => {
     const fetchIssData = async () => {
       try {
-<<<<<<< HEAD
         setError(null);
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/iss`
-        );
-=======
-        setError(null)
-        const response = await fetch(`${API_BASE_URL}/api/iss`)
->>>>>>> 9a5691c136df1af364f2c776ed7ad42e1e861f8b
+        const response = await fetch(`${API_BASE_URL}/api/iss`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -181,15 +174,9 @@ function App() {
   const getCurrentTime = async (lat, lng) => {
     try {
       // Get the timezone for the specific location
-<<<<<<< HEAD
       const response = await fetch(
-        `${
-          import.meta.env.VITE_API_URL || "http://localhost:5000"
-        }/api/timezone?lat=${lat}&lng=${lng}`
+        `${API_BASE_URL}/api/timezone?lat=${lat}&lng=${lng}`
       );
-=======
-      const response = await fetch(`${API_BASE_URL}/api/timezone?lat=${lat}&lng=${lng}`);
->>>>>>> 9a5691c136df1af364f2c776ed7ad42e1e861f8b
 
       if (response.ok) {
         const timezoneData = await response.json();
@@ -249,15 +236,9 @@ function App() {
   const getLightPollutionLevel = async (lat, lng) => {
     try {
       // Fetch real light pollution data from our backend API
-<<<<<<< HEAD
       const response = await fetch(
-        `${
-          import.meta.env.VITE_API_URL || "http://localhost:5000"
-        }/api/light-pollution?lat=${lat}&lng=${lng}`
+        `${API_BASE_URL}/api/light-pollution?lat=${lat}&lng=${lng}`
       );
-=======
-      const response = await fetch(`${API_BASE_URL}/api/light-pollution?lat=${lat}&lng=${lng}`);
->>>>>>> 9a5691c136df1af364f2c776ed7ad42e1e861f8b
 
       if (!response.ok) {
         throw new Error(`Light pollution API error: ${response.status}`);
@@ -318,15 +299,9 @@ function App() {
 
       // Get real weather data from OpenWeatherMap API
       try {
-<<<<<<< HEAD
         const response = await fetch(
-          `${
-            import.meta.env.VITE_API_URL || "http://localhost:5000"
-          }/api/weather?lat=${lat}&lng=${lng}`
+          `${API_BASE_URL}/api/weather?lat=${lat}&lng=${lng}`
         );
-=======
-        const response = await fetch(`${API_BASE_URL}/api/weather?lat=${lat}&lng=${lng}`);
->>>>>>> 9a5691c136df1af364f2c776ed7ad42e1e861f8b
         if (!response.ok) {
           throw new Error(`Weather API error: ${response.status}`);
         }
@@ -613,7 +588,7 @@ function App() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{
               delay: 0.3,
-              duration: 0.5,
+              duration: 1.2,
               ease: "easeOut",
             }}
           >
