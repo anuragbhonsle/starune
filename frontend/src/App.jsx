@@ -104,7 +104,7 @@ function App() {
             // Get place name from coordinates
             const placeInfo = await reverseGeocode(
               position.coords.latitude,
-              position.coords.longitude
+              position.coords.longitude,
             );
 
             setUserLocation({
@@ -115,7 +115,7 @@ function App() {
             });
             analyzeStargazingConditions(
               position.coords.latitude,
-              position.coords.longitude
+              position.coords.longitude,
             );
           } catch (error) {
             console.error("Error getting place name:", error);
@@ -126,7 +126,7 @@ function App() {
             });
             analyzeStargazingConditions(
               position.coords.latitude,
-              position.coords.longitude
+              position.coords.longitude,
             );
           } finally {
             setLoading(false);
@@ -154,11 +154,11 @@ function App() {
 
           alert(errorMessage);
         },
-        options
+        options,
       );
     } else {
       alert(
-        "Geolocation is not supported by this browser. Please use manual entry."
+        "Geolocation is not supported by this browser. Please use manual entry.",
       );
     }
   };
@@ -175,7 +175,7 @@ function App() {
     try {
       // Get the timezone for the specific location
       const response = await fetch(
-        `${API_BASE_URL}/api/timezone?lat=${lat}&lng=${lng}`
+        `${API_BASE_URL}/api/timezone?lat=${lat}&lng=${lng}`,
       );
 
       if (response.ok) {
@@ -237,7 +237,7 @@ function App() {
     try {
       // Fetch real light pollution data from our backend API
       const response = await fetch(
-        `${API_BASE_URL}/api/light-pollution?lat=${lat}&lng=${lng}`
+        `${API_BASE_URL}/api/light-pollution?lat=${lat}&lng=${lng}`,
       );
 
       if (!response.ok) {
@@ -290,7 +290,7 @@ function App() {
 
       console.log(
         "Debug - Current Time:",
-        currentTime.formattedTime || "No formatted time"
+        currentTime.formattedTime || "No formatted time",
       );
       console.log("Debug - Is Night:", isNight);
 
@@ -300,7 +300,7 @@ function App() {
       // Get real weather data from OpenWeatherMap API
       try {
         const response = await fetch(
-          `${API_BASE_URL}/api/weather?lat=${lat}&lng=${lng}`
+          `${API_BASE_URL}/api/weather?lat=${lat}&lng=${lng}`,
         );
         if (!response.ok) {
           throw new Error(`Weather API error: ${response.status}`);
@@ -341,7 +341,7 @@ function App() {
           // Show only the first two issues
           const displayIssues = issues.slice(0, 2);
           recommendation = `Stargazing isn't ideal - ${displayIssues.join(
-            ", "
+            ", ",
           )}.`;
         }
 
@@ -433,7 +433,7 @@ function App() {
     try {
       const query = `${city}, ${country}`.replace(/\s+/g, "+");
       const response = await fetch(
-        `https://nominatim.openstreetmap.org/search?q=${query}&format=json&limit=1`
+        `https://nominatim.openstreetmap.org/search?q=${query}&format=json&limit=1`,
       );
       const data = await response.json();
 
@@ -472,12 +472,12 @@ function App() {
         });
         analyzeStargazingConditions(
           coordinates.latitude,
-          coordinates.longitude
+          coordinates.longitude,
         );
         setShowLocationForm(false);
       } else {
         alert(
-          "Location not found. Please check the city and country names and try again."
+          "Location not found. Please check the city and country names and try again.",
         );
       }
     } catch (error) {
@@ -491,7 +491,7 @@ function App() {
   const reverseGeocode = async (lat, lng) => {
     try {
       const response = await fetch(
-        `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`
+        `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`,
       );
       const data = await response.json();
 
@@ -573,7 +573,7 @@ function App() {
       <header className="relative z-10 px-6 pt-2 flex justify-between items-start">
         <div>
           <h1
-            className="text-4xl font-bold text-white"
+            className="text-4xl font-bold text-white font-mulish font-bold italic"
             style={{
               textShadow:
                 "0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff, 0 0 25px #fff, 0 0 30px rgba(102, 126, 234, 0.6)",
@@ -600,14 +600,18 @@ function App() {
             href="https://github.com/anuragbhonsle/starune"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white/10 backdrop-blur-md rounded-lg p-2 hover:bg-white/20 transition-all duration-300"
-            style={{ border: "1px solid rgba(255, 255, 255, 0.05)" }}
+            className="
+      flex items-center justify-center
+      w-12 h-12
+      bg-white/10 backdrop-blur-md border border-white/5
+      rounded-full
+      text-white
+      hover:bg-white/20 hover:scale-110
+      transition-all duration-300
+      shadow-lg
+    "
           >
-            <svg
-              className="w-6 h-6 text-white"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
             </svg>
           </a>
@@ -701,7 +705,7 @@ function App() {
                       >
                         {stargazingPrediction.weatherData.cloudCover > 0
                           ? stargazingPrediction.weatherData.cloudCover.toFixed(
-                              1
+                              1,
                             ) + "%"
                           : "N/A"}
                       </div>
@@ -710,8 +714,8 @@ function App() {
                           stargazingPrediction.factors.cloudCover === "Good"
                             ? "text-green-400"
                             : stargazingPrediction.factors.cloudCover === "Poor"
-                            ? "text-red-400"
-                            : "text-gray-400"
+                              ? "text-red-400"
+                              : "text-gray-400"
                         }`}
                         style={{ margin: "0" }}
                       >
@@ -742,7 +746,7 @@ function App() {
                       >
                         {stargazingPrediction.weatherData.visibility > 0
                           ? stargazingPrediction.weatherData.visibility.toFixed(
-                              1
+                              1,
                             ) + " km"
                           : "N/A"}
                       </div>
@@ -751,8 +755,8 @@ function App() {
                           stargazingPrediction.factors.visibility === "Good"
                             ? "text-green-400"
                             : stargazingPrediction.factors.visibility === "Poor"
-                            ? "text-red-400"
-                            : "text-gray-400"
+                              ? "text-red-400"
+                              : "text-gray-400"
                         }`}
                         style={{ margin: "0" }}
                       >
@@ -783,7 +787,7 @@ function App() {
                       >
                         {stargazingPrediction.weatherData.humidity > 0
                           ? stargazingPrediction.weatherData.humidity.toFixed(
-                              1
+                              1,
                             ) + "%"
                           : "N/A"}
                       </div>
@@ -792,8 +796,8 @@ function App() {
                           stargazingPrediction.factors.humidity === "Good"
                             ? "text-green-400"
                             : stargazingPrediction.factors.humidity === "Poor"
-                            ? "text-red-400"
-                            : "text-gray-400"
+                              ? "text-red-400"
+                              : "text-gray-400"
                         }`}
                         style={{ margin: "0" }}
                       >
@@ -831,9 +835,9 @@ function App() {
                           stargazingPrediction.factors.lightPollution === "Good"
                             ? "text-green-400"
                             : stargazingPrediction.factors.lightPollution ===
-                              "Poor"
-                            ? "text-red-400"
-                            : "text-gray-400"
+                                "Poor"
+                              ? "text-red-400"
+                              : "text-gray-400"
                         }`}
                         style={{ margin: "0" }}
                       >

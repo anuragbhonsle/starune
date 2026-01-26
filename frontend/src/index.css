@@ -193,6 +193,7 @@ button.glass-button {
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
   transition: all 0.3s ease !important;
   color: black !important;
+  border-radius: 9999px !important;
 }
 
 button.glass-button:hover {
@@ -406,7 +407,12 @@ input[type="number"]:focus {
 
 /* Enhanced typography and font styles */
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
     sans-serif !important;
   font-weight: 400 !important;
   letter-spacing: -0.025em !important;

@@ -45,7 +45,7 @@ export default function Landing() {
 
       {/* Main content */}
       <div className="z-10 flex flex-col items-center justify-center text-center px-6 py-4">
-        <h1 className="text-white font-bold leading-tight text-[55px] sm:text-[64px] md:text-[96px] lg:text-[112px] tracking-wider drop-shadow-[0_0_24px_rgba(255,255,255,0.8)] mb-2">
+        <h1 className="font-mulish font-bold italic text-white leading-tight text-[55px] sm:text-[64px] md:text-[96px] lg:text-[112px] tracking-wider drop-shadow-[0_0_24px_rgba(255,255,255,0.8)] mb-2">
           Star Gazing Tonight
         </h1>
 
@@ -53,7 +53,7 @@ export default function Landing() {
 
         <button
           onClick={() => navigate("/app")}
-          className="glass-button px-8 py-3 text-lg"
+          className="glass-button px-8 py-3 text-lg rounded-full"
         >
           Check
         </button>
