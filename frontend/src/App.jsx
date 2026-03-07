@@ -877,9 +877,9 @@ function App() {
                 }}
               >
                 <p className="text-sm text-white" style={{ margin: "0" }}>
-                  Note: Your location is private. All calculations happen
-                  directly on your device. Your location is never sent to any
-                  server.
+                  Note: Your location is used only to fetch weather and sky
+                  data. Coordinates are sent to OpenWeatherMap API but are never
+                  stored or tracked by this app.
                 </p>
               </div>
 
