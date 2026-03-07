@@ -1,0 +1,80 @@
+[33m9b1d370[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Test
+[33m987d371[m Fixing some vercel issues
+[33m86d713f[m Changed the privacy notice
+[33mab5a7c7[m Trying to fix some issues
+[33md381bb3[m Trying it again
+[33m26995c4[m Trying routes again
+[33m1ef19a4[m Prevent 404 on refresh for React Router routes
+[33mf2033a2[m Removed Ads
+[33mea943ea[m Kept only normal Ads
+[33m5a0498f[m Push added again
+[33m3867f56[m Removed push Ads
+[33m2b8ba27[m Trying Ads on site
+[33m04cc308[m Update index.html
+[33m465b7de[m Update sw.js
+[33m0d005bb[m Update index.html
+[33md65d502[m Update index.html
+[33m8c5ae3e[m Update index.html
+[33md91f25a[m Add files via upload
+[33mbc0a81f[m Update index.html
+[33m16ef26a[m Add files via upload
+[33m3ba0a9d[m Delete frontend/sw.js
+[33m03e39b0[m Update index.html
+[33m8d48969[m Add files via upload
+[33mec657a1[m Update index.html
+[33mac53cc3[m Delete backend/sw.js
+[33m8dcc803[m Delete frontend/sw.js
+[33ma72a3f1[m Delete sw.js
+[33m173a2ed[m Update index.html
+[33mf9fd752[m Add files via upload
+[33m113e077[m Add files via upload
+[33ma90a06d[m Add files via upload
+[33m39df96f[m Gif changed
+[33m21ed2e1[m Changed gif
+[33mb646880[m Changed gif
+[33m9a5691c[m Update README.md
+[33m8684e47[m Update README.md
+[33m345e015[m Update README.md
+[33mf14b8a8[m Update README.md
+[33m0a15f7d[m Deploy backend to Render, frontend to Vercel; remove ngrok & PM2 dependency
+[33m54bd560[m Update Vercel to use Render backend
+[33mb9a7821[m Update frontend to use Render backend URL
+[33mc2c890e[m Render
+[33mad1053c[m Fix output directory for Vercel deployment
+[33m87d677e[m Configure app for ngrok backend deployment
+[33mdcd139c[m Trying
+[33m706add8[m Trying to fix things
+[33m16c63f2[m OK
+[33mbc52666[m Ngrok
+[33m8dfee88[m Made a huge mess, trying to fix it
+[33mba5d498[m Update README.md
+[33mb96d287[m Update README.md
+[33mf6da5f7[m Update README.md
+[33m336fd57[m Update README.md
+[33m47be3cb[m Update README.md
+[33m9f30fd1[m Update README.md
+[33m0c96f76[m Update README.md
+[33m983c0d5[m Update README.md
+[33mb60303b[m Update README.md
+[33ma0b29c2[m Update README.md
+[33m01bdddd[m Update README.md
+[33m73fdc83[m Update README.md
+[33mf80d63b[m Update README.md
+[33m053df72[m Updated readme
+[33m6a85395[m Fix: rebuild node_modules and lock files for Vercel compatibility
+[33m18fcd0d[m Fixed some vercel issues
+[33m8207490[m Added a landing page
+[33m7756ebd[m Show weather data during daytime for better stargazing planning
+[33m8bc2499[m Fixed time issue
+[33m71847ce[m Added light pollution API
+[33m57ff4a4[m Fixed api key issue
+[33mfd1586d[m Made few changes
+[33m200230f[m Added openweather api
+[33m3bb40f9[m Made few changes
+[33m4d1af46[m Fixed scroll issue
+[33m8e8f929[m Fixed github button
+[33mc92ffcc[m Fixed vercel errors
+[33m2f459d1[m Added vercel support
+[33mcd3324c[m Added vercel.json
+[33m1f97758[m Updated readme
+[33m3171400[m Initial commit: Star Gazing Tonight app with real-time weather analysis
