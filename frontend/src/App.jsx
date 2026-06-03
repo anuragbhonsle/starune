@@ -18,13 +18,17 @@ function App() {
   // Generate stars only once to prevent re-randomization
   const stars = useMemo(() => {
     const starArray = [];
+    const colors = ["#ffffff", "#dbeafe", "#fde68a", "#f5f3ff"];
     for (let i = 0; i < 150; i++) {
-      // Reduced from 200 to 150 for better performance
       starArray.push({
         id: i,
         left: -50 + Math.random() * 200,
         top: Math.random() * 100,
         delay: Math.random() * 6,
+        size:
+          Math.random() < 0.9 ? Math.random() * 1 + 1 : Math.random() * 1 + 2,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        glow: Math.random() > 0.4,
       });
     }
     return starArray;
@@ -558,11 +562,11 @@ function App() {
               position: "absolute",
               left: `${star.left}%`,
               top: `${star.top}%`,
-              width: "2px",
-              height: "2px",
-              background: "white",
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              backgroundColor: star.color,
               borderRadius: "50%",
-              opacity: 0.8,
+              opacity: 1,
               animation: `twinkle 2s infinite ${star.delay}s alternate`,
             }}
           />

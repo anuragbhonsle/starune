@@ -9,12 +9,22 @@ export default function Landing() {
 
   const stars = useMemo(() => {
     const starArray = [];
+    const colors = [
+      "#ffffff", // white
+      "#dbeafe", // blue-white
+      "#fde68a", // yellow-white
+      "#f5f3ff", // slightly purple-white
+    ];
     for (let i = 0; i < 150; i++) {
       starArray.push({
         id: i,
         left: -50 + Math.random() * 200,
         top: Math.random() * 100,
         delay: Math.random() * 6,
+        size:
+          Math.random() < 0.9 ? Math.random() * 1 + 1 : Math.random() * 2 + 1,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        glow: Math.random() > 0.4,
       });
     }
     return starArray;
@@ -23,7 +33,6 @@ export default function Landing() {
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center relative overflow-hidden">
       {/* Animated stars */}
-
       <div className="fixed inset-0 z-0 pointer-events-none stars-zoom">
         {stars.map((star) => (
           <div
@@ -32,12 +41,13 @@ export default function Landing() {
               position: "absolute",
               left: `${star.left}%`,
               top: `${star.top}%`,
-              width: "2px",
-              height: "2px",
-              backgroundColor: "white",
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              backgroundColor: star.color,
               borderRadius: "50%",
-              opacity: 0.8,
+              opacity: 1,
               animation: `twinkle 2s infinite ${star.delay}s alternate`,
+              boxShadow: star.glow ? `0 0 10px ${star.color}` : "none",
             }}
           />
         ))}

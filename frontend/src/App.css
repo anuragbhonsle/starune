@@ -520,12 +520,52 @@ label {
     transform: scale(1.75);
   }
 }
+
 /* App.css or global styles */
 .star-glowy {
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4),
-    0 0 16px rgba(255, 255, 255, 0.3), 0 0 24px rgba(255, 255, 255, 0.2);
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.4),
+    0 0 16px rgba(255, 255, 255, 0.3),
+    0 0 24px rgba(255, 255, 255, 0.2);
 }
 
 .stars-zoom {
-  animation: starZoom 7s linear infinite alternate;
+  animation: starZoom 10s linear infinite alternate;
+}
+.milky-way {
+  position: absolute;
+
+  width: 140%;
+  height: 350px;
+
+  left: -20%;
+  top: 25%;
+
+  transform: rotate(-20deg);
+
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 255, 255, 0.08),
+    transparent 70%
+  );
+
+  filter: blur(70px);
+
+  pointer-events: none;
+}
+.nebula-glow {
+  position: absolute;
+
+  width: 700px;
+  height: 700px;
+
+  background: radial-gradient(
+    circle,
+    rgba(100, 149, 237, 0.15),
+    transparent 70%
+  );
+
+  filter: blur(120px);
+
+  pointer-events: none;
 }
