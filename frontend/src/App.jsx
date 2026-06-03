@@ -573,7 +573,7 @@ function App() {
       <header className="relative z-10 px-6 pt-2 flex justify-between items-start">
         <div>
           <h1
-            className="text-4xl font-bold text-white font-mulish font-bold italic"
+            className="text-4xl font-bold text-white font-mulish italic"
             style={{
               textShadow:
                 "0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff, 0 0 25px #fff, 0 0 30px rgba(102, 126, 234, 0.6)",
@@ -584,7 +584,7 @@ function App() {
           </h1>
           <motion.p
             className="text-gray-300 text-lg sm:text-xl mb-4 star-glowy"
-            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            initial={{ opacity: 0, y: 15, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{
               delay: 0.3,
@@ -592,7 +592,7 @@ function App() {
               ease: "easeOut",
             }}
           >
-            Will you be able to see the stars?
+            Stargazing Forecast — Will you be able to see the stars tonight?
           </motion.p>
         </div>
         <div className="flex items-center space-x-4">

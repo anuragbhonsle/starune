@@ -11,15 +11,6 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.get("/api/iss", async (req, res) => {
-  try {
-    const response = await axios.get("http://api.open-notify.org/iss-now.json");
-    res.json(response.data);
-  } catch (error) {
-    console.error("Error fetching ISS data:", error);
-    res.status(500).json({ error: "Failed to fetch ISS data" });
-  }
-});
 
 app.get("/api/weather", async (req, res) => {
   try {
@@ -204,13 +195,128 @@ function getRealisticLightPollution(lat, lng) {
     { lat: -41.2866, lng: 174.7756, name: "Wellington", pollution: 15 },
     { lat: 64.1353, lng: -21.8952, name: "Reykjavik", pollution: 8 },
     { lat: 78.2232, lng: 15.6267, name: "Longyearbyen", pollution: 5 },
+    { lat: 43.6532, lng: -79.3832, name: "Toronto", pollution: 32 },
+    { lat: 45.5017, lng: -73.5673, name: "Montreal", pollution: 25 },
+    { lat: 49.2827, lng: -123.1207, name: "Vancouver", pollution: 20 },
+    { lat: 51.0447, lng: -114.0719, name: "Calgary", pollution: 18 },
+    { lat: 53.5461, lng: -113.4938, name: "Edmonton", pollution: 15 },
+
+    { lat: 19.4326, lng: -99.1332, name: "Mexico City", pollution: 40 },
+    { lat: 20.6597, lng: -103.3496, name: "Guadalajara", pollution: 28 },
+    { lat: 25.6866, lng: -100.3161, name: "Monterrey", pollution: 30 },
+
+    { lat: -23.5505, lng: -46.6333, name: "Sao Paulo", pollution: 42 },
+    { lat: -22.9068, lng: -43.1729, name: "Rio de Janeiro", pollution: 35 },
+    { lat: -15.7939, lng: -47.8828, name: "Brasilia", pollution: 25 },
+    { lat: -34.6037, lng: -58.3816, name: "Buenos Aires", pollution: 32 },
+    { lat: -33.4489, lng: -70.6693, name: "Santiago", pollution: 28 },
+    { lat: -12.0464, lng: -77.0428, name: "Lima", pollution: 30 },
+    { lat: 4.711, lng: -74.0721, name: "Bogota", pollution: 28 },
+    { lat: 6.2442, lng: -75.5812, name: "Medellin", pollution: 22 },
+
+    { lat: 59.3293, lng: 18.0686, name: "Stockholm", pollution: 18 },
+    { lat: 60.1699, lng: 24.9384, name: "Helsinki", pollution: 15 },
+    { lat: 59.9139, lng: 10.7522, name: "Oslo", pollution: 12 },
+    { lat: 55.6761, lng: 12.5683, name: "Copenhagen", pollution: 18 },
+    { lat: 53.3498, lng: -6.2603, name: "Dublin", pollution: 22 },
+
+    { lat: 50.0755, lng: 14.4378, name: "Prague", pollution: 25 },
+    { lat: 48.2082, lng: 16.3738, name: "Vienna", pollution: 24 },
+    { lat: 47.4979, lng: 19.0402, name: "Budapest", pollution: 24 },
+    { lat: 52.2297, lng: 21.0122, name: "Warsaw", pollution: 28 },
+    { lat: 50.4501, lng: 30.5234, name: "Kyiv", pollution: 25 },
+    { lat: 44.4268, lng: 26.1025, name: "Bucharest", pollution: 26 },
+    { lat: 42.6977, lng: 23.3219, name: "Sofia", pollution: 22 },
+    { lat: 45.815, lng: 15.9819, name: "Zagreb", pollution: 18 },
+    { lat: 46.0569, lng: 14.5058, name: "Ljubljana", pollution: 15 },
+    { lat: 43.8563, lng: 18.4131, name: "Sarajevo", pollution: 20 },
+
+    { lat: 38.7223, lng: -9.1393, name: "Lisbon", pollution: 20 },
+    { lat: 43.2965, lng: 5.3698, name: "Marseille", pollution: 22 },
+    { lat: 45.4642, lng: 9.19, name: "Milan", pollution: 30 },
+    { lat: 40.8518, lng: 14.2681, name: "Naples", pollution: 24 },
+    { lat: 37.9838, lng: 23.7275, name: "Athens", pollution: 26 },
+
+    { lat: 24.7136, lng: 46.6753, name: "Riyadh", pollution: 38 },
+    { lat: 21.3891, lng: 39.8579, name: "Jeddah", pollution: 35 },
+    { lat: 25.2854, lng: 51.531, name: "Doha", pollution: 42 },
+    { lat: 26.2235, lng: 50.5876, name: "Manama", pollution: 35 },
+    { lat: 23.5859, lng: 58.4059, name: "Muscat", pollution: 28 },
+    { lat: 32.0853, lng: 34.7818, name: "Tel Aviv", pollution: 28 },
+    { lat: 31.7683, lng: 35.2137, name: "Jerusalem", pollution: 25 },
+    { lat: 33.8938, lng: 35.5018, name: "Beirut", pollution: 30 },
+
+    { lat: 6.5244, lng: 3.3792, name: "Lagos", pollution: 38 },
+    { lat: 9.0765, lng: 7.3986, name: "Abuja", pollution: 25 },
+    { lat: -1.2921, lng: 36.8219, name: "Nairobi", pollution: 22 },
+    { lat: -26.2041, lng: 28.0473, name: "Johannesburg", pollution: 25 },
+    { lat: -33.9249, lng: 18.4241, name: "Cape Town", pollution: 18 },
+    { lat: 30.0333, lng: 31.2333, name: "Giza", pollution: 35 },
+    { lat: 5.6037, lng: -0.187, name: "Accra", pollution: 24 },
+    { lat: 36.7538, lng: 3.0588, name: "Algiers", pollution: 25 },
+    { lat: 33.5731, lng: -7.5898, name: "Casablanca", pollution: 24 },
+    { lat: 36.8065, lng: 10.1815, name: "Tunis", pollution: 22 },
+
+    { lat: 13.7563, lng: 100.5018, name: "Bangkok", pollution: 40 },
+    { lat: 21.0278, lng: 105.8342, name: "Hanoi", pollution: 32 },
+    { lat: 10.8231, lng: 106.6297, name: "Ho Chi Minh City", pollution: 35 },
+    { lat: 11.5564, lng: 104.9282, name: "Phnom Penh", pollution: 25 },
+    { lat: 17.9757, lng: 102.6331, name: "Vientiane", pollution: 18 },
+    { lat: 3.139, lng: 101.6869, name: "Kuala Lumpur", pollution: 35 },
+    { lat: 5.4141, lng: 100.3288, name: "George Town", pollution: 20 },
+    { lat: -6.2088, lng: 106.8456, name: "Jakarta", pollution: 42 },
+    { lat: -7.2575, lng: 112.7521, name: "Surabaya", pollution: 28 },
+    { lat: 14.5995, lng: 120.9842, name: "Manila", pollution: 42 },
+
+    { lat: 22.5726, lng: 88.3639, name: "Kolkata", pollution: 36 },
+    { lat: 12.9716, lng: 77.5946, name: "Bengaluru", pollution: 30 },
+    { lat: 13.0827, lng: 80.2707, name: "Chennai", pollution: 32 },
+    { lat: 17.385, lng: 78.4867, name: "Hyderabad", pollution: 30 },
+    { lat: 18.5204, lng: 73.8567, name: "Pune", pollution: 28 },
+    { lat: 23.0225, lng: 72.5714, name: "Ahmedabad", pollution: 30 },
+    { lat: 26.9124, lng: 75.7873, name: "Jaipur", pollution: 25 },
+    { lat: 26.8467, lng: 80.9462, name: "Lucknow", pollution: 28 },
+    { lat: 21.1458, lng: 79.0882, name: "Nagpur", pollution: 22 },
+    { lat: 22.7196, lng: 75.8577, name: "Indore", pollution: 24 },
+
+    { lat: 31.2304, lng: 121.4737, name: "Shanghai", pollution: 45 },
+    { lat: 22.5431, lng: 114.0579, name: "Shenzhen", pollution: 40 },
+    { lat: 23.1291, lng: 113.2644, name: "Guangzhou", pollution: 40 },
+    { lat: 30.5728, lng: 104.0668, name: "Chengdu", pollution: 32 },
+    { lat: 29.563, lng: 106.5516, name: "Chongqing", pollution: 35 },
+
+    { lat: 35.1796, lng: 129.0756, name: "Busan", pollution: 28 },
+    { lat: 35.6895, lng: 51.389, name: "Tehran", pollution: 35 },
+    { lat: 24.8607, lng: 67.0011, name: "Karachi", pollution: 35 },
+    { lat: 31.5204, lng: 74.3587, name: "Lahore", pollution: 38 },
+    { lat: 23.8103, lng: 90.4125, name: "Dhaka", pollution: 42 },
+
+    { lat: -31.9505, lng: 115.8605, name: "Perth", pollution: 18 },
+    { lat: -34.9285, lng: 138.6007, name: "Adelaide", pollution: 18 },
+    { lat: -27.4698, lng: 153.0251, name: "Brisbane", pollution: 22 },
+    { lat: -42.8821, lng: 147.3272, name: "Hobart", pollution: 12 },
+    { lat: -36.8485, lng: 174.7633, name: "Auckland", pollution: 20 },
+
+    { lat: 61.2181, lng: -149.9003, name: "Anchorage", pollution: 10 },
+    { lat: 58.3019, lng: -134.4197, name: "Juneau", pollution: 8 },
+    { lat: 64.8378, lng: -147.7164, name: "Fairbanks", pollution: 7 },
+
+    { lat: 64.1466, lng: -21.9426, name: "Kopavogur", pollution: 7 },
+    { lat: 69.6492, lng: 18.9553, name: "Tromso", pollution: 6 },
+    { lat: 67.8558, lng: 20.2253, name: "Kiruna", pollution: 5 },
+    { lat: 65.0121, lng: 25.4651, name: "Oulu", pollution: 8 },
+
+    { lat: 35.0116, lng: 135.7681, name: "Kyoto", pollution: 28 },
+    { lat: 34.6937, lng: 135.5023, name: "Osaka", pollution: 40 },
+    { lat: 43.0621, lng: 141.3544, name: "Sapporo", pollution: 18 },
+    { lat: 26.2124, lng: 127.6809, name: "Naha", pollution: 15 },
   ];
 
   // Check if coordinates are near major cities
   for (const city of majorCities) {
     const distance = Math.sqrt(
       Math.pow(parseFloat(lat) - city.lat, 2) +
-        Math.pow(parseFloat(lng) - city.lng, 2)
+        Math.pow(parseFloat(lng) - city.lng, 2),
     );
 
     if (distance < 0.3) {
@@ -218,7 +324,7 @@ function getRealisticLightPollution(lat, lng) {
       return createLightPollutionResponse(
         city.pollution,
         `Near ${city.name}`,
-        city.name
+        city.name,
       );
     }
   }
@@ -228,7 +334,7 @@ function getRealisticLightPollution(lat, lng) {
     return createLightPollutionResponse(
       5,
       "Arctic/Antarctic region",
-      "Polar region"
+      "Polar region",
     );
   }
 
@@ -236,7 +342,7 @@ function getRealisticLightPollution(lat, lng) {
     return createLightPollutionResponse(
       8,
       "High latitude - minimal light pollution",
-      "High latitude"
+      "High latitude",
     );
   }
 
@@ -245,7 +351,7 @@ function getRealisticLightPollution(lat, lng) {
     return createLightPollutionResponse(
       12,
       "Remote area - low light pollution",
-      "Remote area"
+      "Remote area",
     );
   }
 
@@ -254,7 +360,7 @@ function getRealisticLightPollution(lat, lng) {
     return createLightPollutionResponse(
       15,
       "Coastal area - moderate light pollution",
-      "Coastal area"
+      "Coastal area",
     );
   }
 
@@ -263,7 +369,7 @@ function getRealisticLightPollution(lat, lng) {
     return createLightPollutionResponse(
       10,
       "Mountain region - low light pollution",
-      "Mountain region"
+      "Mountain region",
     );
   }
 
@@ -271,7 +377,7 @@ function getRealisticLightPollution(lat, lng) {
   return createLightPollutionResponse(
     25,
     "Urban/suburban area - moderate light pollution",
-    "Urban area"
+    "Urban area",
   );
 }
 
@@ -279,7 +385,7 @@ function getRealisticLightPollution(lat, lng) {
 function createLightPollutionResponse(
   pollutionValue,
   description,
-  locationType
+  locationType,
 ) {
   let level, factor;
 
@@ -323,7 +429,7 @@ function isNearCoast(lat, lng) {
   for (const region of coastalRegions) {
     const distance = Math.sqrt(
       Math.pow(parseFloat(lat) - region.lat, 2) +
-        Math.pow(parseFloat(lng) - region.lng, 2)
+        Math.pow(parseFloat(lng) - region.lng, 2),
     );
     if (distance < 0.5) return true;
   }
@@ -344,7 +450,7 @@ function isMountainRegion(lat, lng) {
   for (const region of mountainRegions) {
     const distance = Math.sqrt(
       Math.pow(parseFloat(lat) - region.lat, 2) +
-        Math.pow(parseFloat(lng) - region.lng, 2)
+        Math.pow(parseFloat(lng) - region.lng, 2),
     );
     if (distance < 0.8) return true;
   }
@@ -529,7 +635,7 @@ function getTimezoneFromCoordinates(lat, lng) {
   for (const region of timezoneRegions) {
     const distance = Math.sqrt(
       Math.pow(parseFloat(lat) - region.lat, 2) +
-        Math.pow(parseFloat(lng) - region.lng, 2)
+        Math.pow(parseFloat(lng) - region.lng, 2),
     );
 
     if (distance < 1.0) {
@@ -594,7 +700,7 @@ function getFallbackLightPollution(lat, lng) {
   for (const city of majorCities) {
     const distance = Math.sqrt(
       Math.pow(parseFloat(lat) - city.lat, 2) +
-        Math.pow(parseFloat(lng) - city.lng, 2)
+        Math.pow(parseFloat(lng) - city.lng, 2),
     );
 
     if (distance < 0.5) {

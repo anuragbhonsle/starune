@@ -48,8 +48,18 @@ export default function Landing() {
         <h1 className="font-mulish font-bold italic text-white leading-tight text-[55px] sm:text-[64px] md:text-[96px] lg:text-[112px] tracking-wider drop-shadow-[0_0_24px_rgba(255,255,255,0.8)] mb-2">
           Star Gazing Tonight
         </h1>
-
-        <p>Will you be able to see the stars?</p>
+        <motion.p
+          className="text-gray-300 text-lg sm:text-xl mb-4 star-glowy"
+          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{
+            delay: 0.3,
+            duration: 1.2,
+            ease: "easeOut",
+          }}
+        >
+          Stargazing Forecast — Will you be able to see the stars tonight?
+        </motion.p>
 
         <button
           onClick={() => navigate("/app")}
