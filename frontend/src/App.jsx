@@ -37,61 +37,6 @@ function App() {
     return starArray;
   }, []);
 
-  // Custom hook for button hover effects
-  const getButtonStyle = (buttonId) => {
-    const isHovered = hoveredButton === buttonId;
-    return {
-      background: isHovered
-        ? "rgba(255, 255, 255, 0.35)"
-        : "rgba(255, 255, 255, 0.25)",
-      backdropFilter: "blur(15px)",
-      WebkitBackdropFilter: "blur(15px)",
-      border: "1px solid rgba(255, 255, 255, 0.3)",
-      color: "white",
-      padding: "0.75rem 1rem",
-      borderRadius: "0.5rem",
-      fontWeight: "500",
-      transition: "all 0.3s ease",
-      transform: isHovered ? "translateY(-2px)" : "translateY(0)",
-      boxShadow: isHovered
-        ? "0 8px 25px rgba(0, 0, 0, 0.4)"
-        : "0 4px 12px rgba(0, 0, 0, 0.3)",
-    };
-  };
-
-  // Fetch ISS data from backend API
-  useEffect(() => {
-    const fetchIssData = async () => {
-      try {
-        setError(null);
-        const response = await fetch(`${VITE_API_URL}/api/iss`);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        setIssData({
-          latitude: parseFloat(data.iss_position.latitude),
-          longitude: parseFloat(data.iss_position.longitude),
-          altitude: 434.29, // Approximate ISS altitude
-        });
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching ISS data:", error);
-        setError("Failed to fetch ISS data. Please try again later.");
-        setLoading(false);
-      }
-    };
-
-    // Delay the initial fetch to prevent blocking the render
-    const initialTimeout = setTimeout(fetchIssData, 100);
-    const interval = setInterval(fetchIssData, 10000); // Update every 10 seconds
-
-    return () => {
-      clearTimeout(initialTimeout);
-      clearInterval(interval);
-    };
-  }, []);
-
   const detectLocation = () => {
     if (navigator.geolocation) {
       // Show loading state
