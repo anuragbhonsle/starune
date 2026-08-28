@@ -1,94 +1,102 @@
-# Starune – Stargazing Forecast App
+<a href="https://git.io/typing-svg">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Plus+Jakarta+Sans&size=40&duration=5000&pause=5000&color=FFFFFF&width=700&height=60&lines=Starune" />
+</a>
 
-**Starune** helps you check if the sky is clear enough for stargazing at your location.  
-Enter your coordinates or search by city, and it’ll give you real-time weather and visibility data to help you plan your night under the stars.
+Starune is a stargazing forecast application, check sky visibility, cloud cover, and atmospheric conditions in real time to plan your night under the stars.
+Built with React, Vite, Tailwind CSS, and an Express backend, it processes live meteorological and location data to determine ideal stargazing windows.
 
-## Check Starune - https://starune.vercel.app/
+## Live Demo: [starune.vercel.app](https://starune.vercel.app/)
 
 ## Features
 
-### Location Support
+* **Flexible location support** — auto-detect location via GPS, search by city/country, or enter custom latitude/longitude
+* **Astronomical conditions tracking** — real-time data for cloud cover, visibility distance, humidity, and light pollution estimation
+* **Day/Night & time awareness** — local time display and automatic solar state calculation for accurate nighttime feedback
+* **Smart forecast logic** — condition evaluation to give a clear verdict on night sky clarity
+* **Full-stack architecture** — separate frontend client and standalone Express API service
 
-- Auto-detect via GPS
-- Search by city and country
-- Enter latitude and longitude manually
+## Tech Stack
 
-### Forecast Details
+* **Frontend:** [React](https://react.dev/) + [Vite](https://vitejs.dev/)
+* **Backend:** Node.js + [Express](https://expressjs.com/)
+* **Styling:** Tailwind CSS, dark night-sky theme
+* **APIs:**
 
-- Cloud cover
-- Visibility distance
-- Humidity levels
-- Light pollution estimation
-
-### Time Awareness
-
-- Local time display for the selected location
-- Day/Night awareness for accurate feedback
-
----
+  * [OpenWeatherMap API](https://openweathermap.org/) — weather metrics, cloud cover, visibility
+  * [OpenStreetMap Nominatim](https://nominatim.openstreetmap.org/) — forward and reverse geocoding
+* **Deployment:** Vercel (Frontend) + Render (Backend)
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js
-- npm
+* Node.js 18+
+* npm or yarn
+* OpenWeatherMap API key
 
-### Setup
-
-Clone the repo:
+### Installation
 
 ```bash
 git clone https://github.com/anuragbhonsle/starune.git
 cd starune
+npm install
 ```
 
-Tech Stack
+### Environment Variables
 
-### Frontend
+Create a `.env` file in the project root:
 
-React
+```env
+# OpenWeatherMap API
+OPENWEATHER_API_KEY=your_api_key_here
 
-Vite
+# Backend API URL (for local dev or production)
+VITE_API_BASE_URL=http://localhost:5000
+```
 
-Tailwind CSS
+### Run the Development Server
 
-### Backend
+Start the backend server:
 
-Node.js
+```bash
+npm run server
+```
 
-Express
+Start the frontend client in a separate terminal:
 
-Axios
+```bash
+npm run dev
+```
 
-## APIs Used
+Open http://localhost:5173 to view the app in your browser.
 
-### OpenWeatherMap API
+## Project Structure
 
-Purpose: Provides current weather data like cloud cover, humidity, visibility, etc.
+```text
+├── src/
+│   ├── assets/           # Dynamic graphics and night sky icons
+│   ├── components/       # Weather cards, search input, and location selectors
+│   ├── hooks/            # Custom React hooks for geolocation and API fetching
+│   ├── services/         # Axios API clients for OpenWeatherMap & Nominatim
+│   └── App.jsx           # Main forecast dashboard layout
+├── server/
+│   ├── index.js          # Express server entry point
+│   └── routes/           # Weather and geocoding proxy routes
+└── public/               # Static assets and favicon
+```
 
-Endpoint used:
+## Architecture & Deployment
 
-https://api.openweathermap.org
+Starune is fully deployed and decoupled across production environments:
 
-### OpenStreetMap API
+* **Frontend:** Hosted on Vercel for fast static delivery and continuous integration.
+* **Backend:** Hosted on Render as an independent Express API service.
 
-Purpose: Converts city name to coordinates (geocoding) and vice versa (reverse geocoding)
 
-Endpoint used:
+## Contributing
 
-https://nominatim.openstreetmap.org
+Contributions, issues, and feature requests are welcome. Feel free to open an issue or submit a pull request.
 
-### Production Upgrade
+## License
 
-Stargaze is now officially **live and independent** from local machines!
-
-### What’s New
-
-- Backend hosted on Render → always online
-- Frontend deployed on Vercel
-- No more ngrok or PM2 headaches
-- Works 24/7, even if the laptop is off
-- Easy to share with friends & focus on building features
-
-This little upgrade turns our hobby project into a **real production app**!
+Distributed under the MIT License. See LICENSE for more information.
