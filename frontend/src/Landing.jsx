@@ -1,8 +1,7 @@
 import { useMemo } from "react";
-import { useNavigate } from "react-router-dom";
-import "./App.css"; // Make sure twinkle animation & glass-button are defined here
-import { motion } from "framer-motion";
-import { FaGithub } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import FlipWords from "./components/FlipWords";
+import { BsStar } from "react-icons/bs";
 
 export default function Landing() {
   const navigate = useNavigate();
@@ -55,25 +54,20 @@ export default function Landing() {
 
       {/* Main content */}
       <div className="z-10 flex flex-col items-center justify-center text-center px-6 py-4">
-        <h1 className="font-mulish font-bold italic text-white leading-tight text-[55px] sm:text-[64px] md:text-[96px] lg:text-[112px] tracking-wider drop-shadow-[0_0_24px_rgba(255,255,255,0.8)] mb-2">
-          Star Gazing Tonight
+        <h1 className="font-bold text-white leading-tight text-4xl sm:text-3xl lg:text-5xl tracking-wider mb-4">
+          <span>
+            Star{" "}
+            <FlipWords
+              words={["Gazing", "Watching", "Tracking", "Exploring"]}
+              duration={5000}
+              className="text-white"
+            />
+            Tonight
+          </span>
         </h1>
-        <motion.p
-          className="text-gray-300 text-lg sm:text-xl mb-4 star-glowy"
-          initial={{ opacity: 0, y: 10, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{
-            delay: 0.3,
-            duration: 1.2,
-            ease: "easeOut",
-          }}
-        >
-          Stargazing Forecast — Will you be able to see the stars tonight?
-        </motion.p>
-
         <button
           onClick={() => navigate("/app")}
-          className="glass-button px-8 py-3 text-lg rounded-full"
+          className="glass-button px-8 py-3 text-lg rounded-full hover:bg-white/70 active:scale-95 duration-200 transition-all"
         >
           Check
         </button>

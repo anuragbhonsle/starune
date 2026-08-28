@@ -11,7 +11,15 @@
     "backend"
   ],
   "dependencies": {
+    "@radix-ui/react-hover-card": "^1.1.23",
+    "@tabler/icons-react": "^3.46.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "clsx": "^2.1.1",
     "framer-motion": "^12.23.12",
-    "react-icons": "^5.5.0"
+    "motion": "^13.1.1",
+    "qss": "^3.0.0",
+    "react-icons": "^5.5.0",
+    "tailwind-merge": "^3.6.0",
+    "tailwindcss": "^4.3.3"
   }
 }

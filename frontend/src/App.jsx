@@ -1,5 +1,8 @@
 import { useState, useEffect, useMemo } from "react";
+import { FaGithub } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import FlipWords from "./components/FlipWords";
 function App() {
   const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
   const [issData, setIssData] = useState({
@@ -574,406 +577,254 @@ function App() {
       </div>
 
       {/* Header */}
-      <header className="relative z-10 px-6 pt-2 flex justify-between items-start">
+      <header className="relative z-10 px-4 sm:px-6 pt-4 sm:pt-2 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mt-5 mb-10">
         <div>
-          <h1
-            className="text-4xl font-bold text-white font-mulish italic"
-            style={{
-              textShadow:
-                "0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff, 0 0 25px #fff, 0 0 30px rgba(102, 126, 234, 0.6)",
-              letterSpacing: "0.05em",
-            }}
-          >
-            Star Gazing Tonight
+          <h1 className="font-bold text-white leading-tight text-2xl sm:text-2xl lg:text-3xl tracking-wider mb-4">
+            Star{" "}
+            <FlipWords
+              words={["Gazing", "Watching", "Tracking", "Exploring"]}
+              duration={5000}
+              className="text-white"
+            />
+            Tonight
           </h1>
           <motion.p
-            className="text-gray-300 text-lg sm:text-xl mb-4 star-glowy"
-            initial={{ opacity: 0, y: 15, scale: 0.95 }}
+            className="text-white/80 text-base sm:text-lg mb-2 sm:mb-4"
+            initial={{ opacity: 0, y: 7, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{
               delay: 0.3,
-              duration: 1.2,
+              duration: 0.5,
               ease: "easeOut",
             }}
           >
-            Stargazing Forecast — Will you be able to see the stars tonight?
+            Stargazing Forecast - Will you be able to see the stars tonight?
           </motion.p>
         </div>
-        <div className="flex items-center space-x-4">
-          <a
-            href="https://github.com/anuragbhonsle/starune"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="
-      flex items-center justify-center
-      w-12 h-12
-      bg-white/10 backdrop-blur-md border border-white/5
-      rounded-full
-      text-white
-      hover:bg-white/20 hover:scale-110
-      transition-all duration-300
-      shadow-lg
-    "
+        <div className="flex items-center justify-center">
+          <Link
+            to="/about"
+            className="text-md text-white/70 hover:text-white underline underline-offset-4 tracking-wide transition-colors cursor-pointer"
           >
-            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-            </svg>
-          </a>
+            About
+          </Link>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="relative z-10 px-6 pt-0">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+      <main className="relative z-10 px-4 sm:px-6 pt-2 pb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 max-w-7xl mx-auto">
           {/* Left Panel - Stargazing Prediction */}
-          <div
-            className="glass-panel rounded-lg p-4"
-            style={{
-              background: "transparent",
-              border: "1px solid rgba(255, 255, 255, 0.15)",
-              borderRadius: "0.5rem",
-              padding: "0.5rem",
-            }}
-          >
-            <div className="mb-2">
-              <h2
-                className="text-2xl font-semibold text-white mb-4"
-                style={{ marginTop: "0", paddingTop: "0" }}
-              >
-                Tonight's Prediction
-              </h2>
+          <div className="glass-panel p-4">
+            <h2 className="text-xl sm:text-2xl font-semibold text-white mb-3">
+              Tonight's Prediction
+            </h2>
 
-              {/* Night sky image */}
-              <div className="mb-4 rounded-lg overflow-hidden relative">
-                <img
-                  src="/abc.gif"
-                  alt="Night sky with stars"
-                  className="w-full rounded-lg"
-                  style={{
-                    width: "100%",
-                    height: "220px",
-                    objectFit: "cover",
-                  }}
-                />
-              </div>
-
-              {!userLocation ? (
-                <div className="text-gray-300 text-center py-8">
-                  <p>
-                    Enter your location to get tonight's stargazing forecast
-                  </p>
-                </div>
-              ) : stargazingPrediction ? (
-                <div className="space-y-4">
-                  <div
-                    className={`text-center py-2 px-4 rounded-lg ${
-                      stargazingPrediction.isGoodForStargazing
-                        ? "bg-green-900/30 border border-green-500/30"
-                        : "bg-red-900/30 border border-red-500/30"
-                    }`}
-                  >
-                    <h3
-                      className="text-lg font-semibold text-white"
-                      style={{
-                        margin: "0",
-                        paddingTop: "8px",
-                        paddingBottom: "8px",
-                      }}
-                    >
-                      {stargazingPrediction.recommendation}
-                    </h3>
-                  </div>
-
-                  <div className="grid grid-cols-4 gap-4">
-                    <div
-                      className="weather-metric rounded-lg p-3 text-center"
-                      style={{
-                        background: "rgba(255, 255, 255, 0.05)",
-                        backdropFilter: "blur(10px)",
-                        WebkitBackdropFilter: "blur(10px)",
-                        border: "1px solid rgba(255, 255, 255, 0.15)",
-                        borderRadius: "0.5rem",
-                        padding: "0.1rem",
-                        textAlign: "center",
-                      }}
-                    >
-                      <div
-                        className="text-sm text-gray-400"
-                        style={{ margin: "0" }}
-                      >
-                        Cloud Cover
-                      </div>
-                      <div
-                        className="text-white font-semibold"
-                        style={{ margin: "0" }}
-                      >
-                        {stargazingPrediction.weatherData.cloudCover > 0
-                          ? stargazingPrediction.weatherData.cloudCover.toFixed(
-                              1,
-                            ) + "%"
-                          : "N/A"}
-                      </div>
-                      <div
-                        className={`text-xs ${
-                          stargazingPrediction.factors.cloudCover === "Good"
-                            ? "text-green-400"
-                            : stargazingPrediction.factors.cloudCover === "Poor"
-                              ? "text-red-400"
-                              : "text-gray-400"
-                        }`}
-                        style={{ margin: "0" }}
-                      >
-                        {stargazingPrediction.factors.cloudCover}
-                      </div>
-                    </div>
-                    <div
-                      className="weather-metric rounded-lg p-3 text-center"
-                      style={{
-                        background: "rgba(255, 255, 255, 0.05)",
-                        backdropFilter: "blur(10px)",
-                        WebkitBackdropFilter: "blur(10px)",
-                        border: "1px solid rgba(255, 255, 255, 0.15)",
-                        borderRadius: "0.5rem",
-                        padding: "0.1rem",
-                        textAlign: "center",
-                      }}
-                    >
-                      <div
-                        className="text-sm text-gray-400"
-                        style={{ margin: "0" }}
-                      >
-                        Visibility
-                      </div>
-                      <div
-                        className="text-white font-semibold"
-                        style={{ margin: "0" }}
-                      >
-                        {stargazingPrediction.weatherData.visibility > 0
-                          ? stargazingPrediction.weatherData.visibility.toFixed(
-                              1,
-                            ) + " km"
-                          : "N/A"}
-                      </div>
-                      <div
-                        className={`text-xs ${
-                          stargazingPrediction.factors.visibility === "Good"
-                            ? "text-green-400"
-                            : stargazingPrediction.factors.visibility === "Poor"
-                              ? "text-red-400"
-                              : "text-gray-400"
-                        }`}
-                        style={{ margin: "0" }}
-                      >
-                        {stargazingPrediction.factors.visibility}
-                      </div>
-                    </div>
-                    <div
-                      className="weather-metric rounded-lg p-3 text-center"
-                      style={{
-                        background: "rgba(255, 255, 255, 0.05)",
-                        backdropFilter: "blur(10px)",
-                        WebkitBackdropFilter: "blur(10px)",
-                        border: "1px solid rgba(255, 255, 255, 0.15)",
-                        borderRadius: "0.5rem",
-                        padding: "0.1rem",
-                        textAlign: "center",
-                      }}
-                    >
-                      <div
-                        className="text-sm text-gray-400"
-                        style={{ margin: "0" }}
-                      >
-                        Humidity
-                      </div>
-                      <div
-                        className="text-white font-semibold"
-                        style={{ margin: "0" }}
-                      >
-                        {stargazingPrediction.weatherData.humidity > 0
-                          ? stargazingPrediction.weatherData.humidity.toFixed(
-                              1,
-                            ) + "%"
-                          : "N/A"}
-                      </div>
-                      <div
-                        className={`text-xs ${
-                          stargazingPrediction.factors.humidity === "Good"
-                            ? "text-green-400"
-                            : stargazingPrediction.factors.humidity === "Poor"
-                              ? "text-red-400"
-                              : "text-gray-400"
-                        }`}
-                        style={{ margin: "0" }}
-                      >
-                        {stargazingPrediction.factors.humidity}
-                      </div>
-                    </div>
-                    <div
-                      className="weather-metric rounded-lg p-3 text-center"
-                      style={{
-                        background: "rgba(255, 255, 255, 0.05)",
-                        backdropFilter: "blur(10px)",
-                        WebkitBackdropFilter: "blur(10px)",
-                        border: "1px solid rgba(255, 255, 255, 0.15)",
-                        borderRadius: "0.5rem",
-                        padding: "0.1rem",
-                        textAlign: "center",
-                      }}
-                    >
-                      <div
-                        className="text-sm text-gray-400"
-                        style={{ margin: "0" }}
-                      >
-                        Light Pollution
-                      </div>
-                      <div
-                        className="text-white font-semibold"
-                        style={{ margin: "0" }}
-                      >
-                        {stargazingPrediction.lightPollution
-                          ? stargazingPrediction.lightPollution.level
-                          : "N/A"}
-                      </div>
-                      <div
-                        className={`text-xs ${
-                          stargazingPrediction.factors.lightPollution === "Good"
-                            ? "text-green-400"
-                            : stargazingPrediction.factors.lightPollution ===
-                                "Poor"
-                              ? "text-red-400"
-                              : "text-gray-400"
-                        }`}
-                        style={{ margin: "0" }}
-                      >
-                        {stargazingPrediction.factors.lightPollution}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="text-gray-300 text-center py-8">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-4"></div>
-                  <p>Analyzing conditions...</p>
-                </div>
-              )}
+            {/* Night sky image */}
+            <div className="mb-4 rounded-lg overflow-hidden">
+              <img
+                src="/abc.gif"
+                alt="Night sky with stars"
+                className="w-full h-[180px] sm:h-[220px] object-cover rounded-lg saturate-140 contrast-135 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all duration-500 hover:saturate-170 hover:contrast-170  hover:scale-103"
+              />
             </div>
+
+            {!userLocation ? (
+              <div className="text-gray-300 text-center py-8">
+                <p>Enter your location to get tonight's stargazing forecast</p>
+              </div>
+            ) : stargazingPrediction ? (
+              <div className="space-y-4">
+                <div
+                  className={`text-center py-2 px-4 rounded-lg border ${
+                    stargazingPrediction.isGoodForStargazing
+                      ? "recommendation border-white/20"
+                      : "recommendation border-white/20"
+                  }`}
+                >
+                  <h3 className="text-base sm:text-lg font-semibold text-white py-1">
+                    {stargazingPrediction.recommendation}
+                  </h3>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                  <div className="weather-metric rounded-lg p-2.5 sm:p-3">
+                    <div className="text-xs sm:text-sm text-gray-400">
+                      Cloud Cover
+                    </div>
+                    <div className="text-white font-semibold text-sm sm:text-base">
+                      {stargazingPrediction.weatherData.cloudCover > 0
+                        ? stargazingPrediction.weatherData.cloudCover.toFixed(
+                            1,
+                          ) + "%"
+                        : "N/A"}
+                    </div>
+                    <div
+                      className={`text-xs ${
+                        stargazingPrediction.factors.cloudCover === "Good"
+                          ? "text-white/80"
+                          : stargazingPrediction.factors.cloudCover === "Poor"
+                            ? "text-red-400"
+                            : "text-gray-400"
+                      }`}
+                    >
+                      {stargazingPrediction.factors.cloudCover}
+                    </div>
+                  </div>
+
+                  <div className="weather-metric rounded-lg p-2.5 sm:p-3">
+                    <div className="text-xs sm:text-sm text-gray-400">
+                      Visibility
+                    </div>
+                    <div className="text-white font-semibold text-sm sm:text-base">
+                      {stargazingPrediction.weatherData.visibility > 0
+                        ? stargazingPrediction.weatherData.visibility.toFixed(
+                            1,
+                          ) + " km"
+                        : "N/A"}
+                    </div>
+                    <div
+                      className={`text-xs ${
+                        stargazingPrediction.factors.visibility === "Good"
+                          ? "text-white/80"
+                          : stargazingPrediction.factors.visibility === "Poor"
+                            ? "text-red-400"
+                            : "text-gray-400"
+                      }`}
+                    >
+                      {stargazingPrediction.factors.visibility}
+                    </div>
+                  </div>
+
+                  <div className="weather-metric rounded-lg p-2.5 sm:p-3">
+                    <div className="text-xs sm:text-sm text-gray-400">
+                      Humidity
+                    </div>
+                    <div className="text-white font-semibold text-sm sm:text-base">
+                      {stargazingPrediction.weatherData.humidity > 0
+                        ? stargazingPrediction.weatherData.humidity.toFixed(1) +
+                          "%"
+                        : "N/A"}
+                    </div>
+                    <div
+                      className={`text-xs ${
+                        stargazingPrediction.factors.humidity === "Good"
+                          ? "text-white/80"
+                          : stargazingPrediction.factors.humidity === "Poor"
+                            ? "text-red-400"
+                            : "text-gray-400"
+                      }`}
+                    >
+                      {stargazingPrediction.factors.humidity}
+                    </div>
+                  </div>
+
+                  <div className="weather-metric rounded-lg p-2.5 sm:p-3">
+                    <div className="text-xs sm:text-sm text-gray-400">
+                      Light Pollution
+                    </div>
+                    <div className="text-white font-semibold text-sm sm:text-base">
+                      {stargazingPrediction.lightPollution
+                        ? stargazingPrediction.lightPollution.level
+                        : "N/A"}
+                    </div>
+                    <div
+                      className={`text-xs ${
+                        stargazingPrediction.factors.lightPollution === "Good"
+                          ? "text-white/80"
+                          : stargazingPrediction.factors.lightPollution ===
+                              "Poor"
+                            ? "text-red-400"
+                            : "text-gray-400"
+                      }`}
+                    >
+                      {stargazingPrediction.factors.lightPollution}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="text-gray-300 text-center py-8">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-4"></div>
+                <p>Analyzing conditions...</p>
+              </div>
+            )}
           </div>
 
           {/* Right Panel - Location Input */}
-          <div
-            className="glass-panel rounded-lg p-4"
-            style={{
-              background: "transparent",
-              border: "1px solid rgba(255, 255, 255, 0.15)",
-              borderRadius: "0.5rem",
-              padding: "0.5rem",
-            }}
-          >
-            <div className="mb-2">
-              <div
-                className="border border-white/30 rounded-lg p-4 mb-2"
-                style={{
-                  background: "transparent",
-                  border: "1px solid rgba(255, 255, 255, 0.15)",
-                  borderRadius: "0.5rem",
-                  padding: "0.5rem",
-                  marginBottom: "1rem",
-                }}
+          <div className="glass-panel p-4">
+            <div className="border border-white/15 rounded-lg p-3 mb-4">
+              <p className="text-xs sm:text-sm text-white/70 leading-relaxed">
+                Note: Your location is used only to fetch weather and sky data.
+                Coordinates are sent to OpenWeatherMap API but are never stored
+                or tracked by this app.
+              </p>
+            </div>
+
+            <div className="space-y-1 flex flex-col items-center">
+              <button
+                onClick={detectLocation}
+                className="glass-button w-full sm:w-3/5 sm:max-w-[300px] px-6 py-2.5 sm:py-3 text-sm sm:text-base md:text-sm lg:text-md rounded-full"
+                onMouseEnter={() => setHoveredButton("detect")}
+                onMouseLeave={() => setHoveredButton(null)}
               >
-                <p className="text-sm text-white" style={{ margin: "0" }}>
-                  Note: Your location is used only to fetch weather and sky
-                  data. Coordinates are sent to OpenWeatherMap API but are never
-                  stored or tracked by this app.
-                </p>
-              </div>
+                Detect My Location
+              </button>
 
-              <div className="space-y-3.5 flex flex-col items-center">
-                <button
-                  onClick={detectLocation}
-                  className="glass-button px-8 py-3 text-lg"
-                  onMouseEnter={() => setHoveredButton("detect")}
-                  onMouseLeave={() => setHoveredButton(null)}
-                >
-                  Detect My Location
-                </button>
+              <div className="text-center text-gray-400 text-sm">OR</div>
 
-                <div className="text-center text-gray-400 text-sm">OR</div>
+              <button
+                onClick={dropOnMap}
+                className="glass-button w-full sm:w-3/5 sm:max-w-[300px] px-6 py-2.5 sm:py-3 text-sm sm:text-basemd:text-sm lg:text-md rounded-full"
+                onMouseEnter={() => setHoveredButton("city")}
+                onMouseLeave={() => setHoveredButton(null)}
+              >
+                Enter City & Country
+              </button>
 
-                <button
-                  onClick={dropOnMap}
-                  className="glass-button px-8 py-3 text-lg"
-                  onMouseEnter={() => setHoveredButton("city")}
-                  onMouseLeave={() => setHoveredButton(null)}
-                >
-                  Enter City & Country
-                </button>
+              <div className="text-center text-gray-400 text-sm">OR</div>
 
-                <div className="text-center text-gray-400 text-sm">OR</div>
-
-                <button
-                  onClick={enterManually}
-                  className="glass-button px-8 py-3 text-lg"
-                  onMouseEnter={() => setHoveredButton("coords")}
-                  onMouseLeave={() => setHoveredButton(null)}
-                >
-                  Enter Coordinates
-                </button>
-              </div>
+              <button
+                onClick={enterManually}
+                className="glass-button w-full sm:w-3/5 sm:max-w-[300px] px-6 py-2.5 sm:py-3 text-sm sm:text-base md:text-sm lg:text-md rounded-full"
+                onMouseEnter={() => setHoveredButton("coords")}
+                onMouseLeave={() => setHoveredButton(null)}
+              >
+                Enter Coordinates
+              </button>
             </div>
 
             {userLocation && (
-              <div
-                className="mt-6 p-4 bg-green-900/30 border border-green-500/30 rounded-lg"
-                style={{
-                  marginTop: "0.5rem",
-                  padding: "0.5rem",
-                  background: "rgba(20, 83, 45, 0.3)",
-                  border: "1px solid rgba(34, 197, 94, 0.15)",
-                  borderRadius: "0.5rem",
-                }}
-              >
-                <div className="text-green-300 text-sm">
-                  <div className="text-green-200 font-semibold mb-1">
-                    Your Location
-                  </div>
-                  <div className="text-xs">
-                    {userLocation.latitude.toFixed(4)}°,{" "}
-                    {userLocation.longitude.toFixed(4)}°
-                    {userLocation.city && (
-                      <span>
-                        {" "}
-                        • {userLocation.city}, {userLocation.country}
-                      </span>
-                    )}
-                  </div>
+              <div className="mt-4 p-3 bg-transperent border border-white/20 rounded-lg">
+                <div className="text-white text-sm font-semibold mb-1">
+                  Your Location
+                </div>
+                <div className="text-xs text-white/70">
+                  {userLocation.latitude.toFixed(4)}°,{" "}
+                  {userLocation.longitude.toFixed(4)}°
+                  {userLocation.city && (
+                    <span>
+                      {" "}
+                      • {userLocation.city}, {userLocation.country}
+                    </span>
+                  )}
                 </div>
               </div>
             )}
 
             {/* Time Information */}
             {stargazingPrediction && stargazingPrediction.timeInfo && (
-              <div
-                className="mt-4 p-4 bg-blue-900/30 border border-blue-500/30 rounded-lg"
-                style={{
-                  marginTop: "0.5rem",
-                  padding: "0.5rem",
-                  background: "rgba(30, 58, 138, 0.3)",
-                  border: "1px solid rgba(59, 130, 246, 0.3)",
-                  borderRadius: "0.5rem",
-                }}
-              >
-                <div className="text-blue-200 text-sm">
-                  <div className="text-blue-100 font-semibold mb-1">
-                    Current Time: {stargazingPrediction.timeInfo.currentTime}
-                  </div>
-                  <div className="text-xs">
-                    {stargazingPrediction.timeInfo.isNightTime
-                      ? "Night time - stars should be visible"
-                      : "Day time - stars not visible"}
-                  </div>
-                  <div className="text-xs text-blue-300 mt-1">
-                    Time shown is local time for the selected location
-                  </div>
+              <div className="mt-3 p-3 bg-transperent border border-white/20 rounded-lg">
+                <div className="text-white text-sm font-semibold mb-1">
+                  Current Time: {stargazingPrediction.timeInfo.currentTime}
+                </div>
+                <div className="text-xs text-white/70">
+                  {stargazingPrediction.timeInfo.isNightTime
+                    ? "Night time - stars should be visible"
+                    : "Day time - stars not visible"}
+                </div>
+                <div className="text-xs text-white/70 mt-1">
+                  Time shown is local time for the selected location
                 </div>
               </div>
             )}
@@ -983,48 +834,47 @@ function App() {
 
       {/* Location Form Modal */}
       {showLocationForm && (
-        <div className="fixed inset-0 modal-backdrop flex items-center justify-center z-50">
-          <div className="prediction-card rounded-lg p-6 max-w-md w-full mx-4">
+        <div className="modal-backdrop">
+          <div className="prediction-card">
             <h3 className="text-xl font-semibold text-white mb-4">
               Enter Your Location
             </h3>
             <form onSubmit={handleLocationSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-white/70 mb-1.5">
                   Country
                 </label>
                 <input
                   type="text"
                   name="country"
                   required
-                  className="w-full form-input rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:outline-none"
+                  className="form-input w-full rounded-full px-4 py-2.5"
                   placeholder="e.g., USA, Canada, UK"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-white/70 mb-1.5">
                   City
                 </label>
                 <input
                   type="text"
                   name="city"
                   required
-                  className="w-full form-input rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:outline-none"
+                  className="form-input w-full rounded-full px-4 py-2.5"
                   placeholder="e.g., New York, Toronto, London"
                 />
               </div>
-              <div className="flex space-x-3">
+              <div className="flex gap-3 pt-1">
                 <button
                   type="submit"
-                  className="flex-1 glass-button text-white py-2 px-4 rounded-lg font-medium"
+                  className="glass-button flex-1 py-2.5 px-4 text-base  rounded-full"
                 >
                   Submit
                 </button>
-
                 <button
                   type="button"
                   onClick={() => setShowLocationForm(false)}
-                  className="glass-button flex-1 text-white px-8 py-3 text-lg rounded-lg transition-all"
+                  className="flex-1 border border-white/20 text-white py-2.5 px-4 rounded-2xl font-medium hover:bg-white/10 transition-all rounded-full"
                 >
                   Cancel
                 </button>
@@ -1036,14 +886,14 @@ function App() {
 
       {/* Manual Coordinates Form Modal */}
       {showManualForm && (
-        <div className="fixed inset-0 modal-backdrop flex items-center justify-center z-50">
-          <div className="prediction-card rounded-lg p-6 max-w-md w-full mx-4">
+        <div className="modal-backdrop">
+          <div className="prediction-card">
             <h3 className="text-xl font-semibold text-white mb-4">
               Enter Coordinates
             </h3>
             <form onSubmit={handleManualSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-white/70 mb-1.5">
                   Latitude
                 </label>
                 <input
@@ -1051,12 +901,12 @@ function App() {
                   name="latitude"
                   step="any"
                   required
-                  className="w-full form-input rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:outline-none"
+                  className="form-input w-full rounded-full px-4 py-2.5 "
                   placeholder="e.g., 40.7128"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-white/70 mb-1.5">
                   Longitude
                 </label>
                 <input
@@ -1064,22 +914,21 @@ function App() {
                   name="longitude"
                   step="any"
                   required
-                  className="w-full form-input rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:outline-none"
+                  className="form-input w-full rounded-full px-4 py-2.5"
                   placeholder="e.g., -74.0060"
                 />
               </div>
-              <div className="flex space-x-3">
+              <div className="flex gap-3 pt-1">
                 <button
                   type="submit"
-                  className="glass-button flex-1 text-white px-8 py-3 text-lg rounded-lg transition-all"
+                  className="glass-button flex-1 py-2.5 px-4 text-base rounded-full"
                 >
                   Submit
                 </button>
-
                 <button
                   type="button"
                   onClick={() => setShowManualForm(false)}
-                  className="glass-button flex-1 text-white px-8 py-3 text-lg rounded-lg transition-all"
+                  className="flex-1 border border-white/20 text-white py-2.5 px-4 rounded-2xl font-medium hover:bg-white/10 transition-all rounded-full"
                 >
                   Cancel
                 </button>
