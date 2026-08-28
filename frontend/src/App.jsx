@@ -1,10 +1,10 @@
 import { useState, useEffect, useMemo } from "react";
-import { FaGithub } from "react-icons/fa";
+
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import FlipWords from "./components/FlipWords";
 function App() {
-  const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  const VITE_API_URL = import.meta.env.VITE_API_URL;
   const [issData, setIssData] = useState({
     latitude: 0,
     longitude: 0,
@@ -64,7 +64,7 @@ function App() {
     const fetchIssData = async () => {
       try {
         setError(null);
-        const response = await fetch(`${API_BASE_URL}/api/iss`);
+        const response = await fetch(`${VITE_API_URL}/api/iss`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -182,7 +182,7 @@ function App() {
     try {
       // Get the timezone for the specific location
       const response = await fetch(
-        `${API_BASE_URL}/api/timezone?lat=${lat}&lng=${lng}`,
+        `${VITE_API_URL}/api/timezone?lat=${lat}&lng=${lng}`,
       );
 
       if (response.ok) {
@@ -244,7 +244,7 @@ function App() {
     try {
       // Fetch real light pollution data from our backend API
       const response = await fetch(
-        `${API_BASE_URL}/api/light-pollution?lat=${lat}&lng=${lng}`,
+        `${VITE_API_URL}/api/light-pollution?lat=${lat}&lng=${lng}`,
       );
 
       if (!response.ok) {
@@ -307,7 +307,7 @@ function App() {
       // Get real weather data from OpenWeatherMap API
       try {
         const response = await fetch(
-          `${API_BASE_URL}/api/weather?lat=${lat}&lng=${lng}`,
+          `${VITE_API_URL}/api/weather?lat=${lat}&lng=${lng}`,
         );
         if (!response.ok) {
           throw new Error(`Weather API error: ${response.status}`);
