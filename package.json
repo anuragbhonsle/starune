@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Stargazing Forecast App",
   "scripts": {
-    "build": "cd frontend && npm install && npm run build",
-    "dev": "cd frontend && npm run dev"
+    "build": "npm run build --workspace=frontend",
+    "dev": "npm run dev --workspace=frontend"
   },
   "workspaces": [
     "frontend",
